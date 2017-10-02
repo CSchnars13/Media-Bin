@@ -54,7 +54,8 @@ module.exports = {
       }, {
         test: /\.json$/,
         loader: 'json-loader',
-      },
+      }, { 
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },
 
@@ -71,6 +72,12 @@ module.exports = {
         'NODE_ENV': JSON.stringify('development'),
       }
     }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'],
+    })
   ],
 
   postcss: () => [
