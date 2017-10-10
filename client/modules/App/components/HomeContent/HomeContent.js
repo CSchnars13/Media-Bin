@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
-import styles from './LoginBox.css';
+import styles from './HomeContent.css';
 import LoginBox from './Content/LoginBox';
-import LoginBox from './Content/InfoBox';
+import InfoBox from './Content/InfoBox';
 
 export class HomeContent extends Component{
 	constructor(props){
@@ -13,12 +13,15 @@ export class HomeContent extends Component{
 	render(){
 		return (
 			<div className = "container-fluid">
-				<div className="row">
-					<div className="col">
-						<LoginBox />
-					</div>
-					<div className="col">
-						<InfoBox />
+				<div className = {styles.content}>
+					<div className="row">
+						<div className="col">
+							<InfoBox />
+						</div>
+						<div className={styles.divider}></div>
+						<div className="col">
+							<LoginBox />
+						</div>
 					</div>
 				</div>	
 			</div>

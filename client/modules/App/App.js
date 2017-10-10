@@ -8,7 +8,7 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
-import HomeContent from './components/Footer/Footer';
+import HomeContent from './components/HomeContent/HomeContent';
 import Footer from './components/Footer/Footer';
 
 // Import Actions
@@ -22,7 +22,10 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({isMounted: true}); // eslint-disable-line
+    window.requestAnimationFrame(() => {
+      this.setState({isMounted: true});
+    })
+    this.setState({isMounted: true});
   }
 
   toggleAddPostSection = () => {
@@ -35,8 +38,8 @@ export class App extends Component {
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <div>
           <Helmet
-            title="MERN Starter - Blog App"
-            titleTemplate="%s - Blog App"
+            title="Media Bin"
+            titleTemplate="%s"
             meta={[
               { charset: 'utf-8' },
               {
@@ -49,11 +52,7 @@ export class App extends Component {
               },
             ]}
           />
-          <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-          />
+          <Header />
           <HomeContent />
           <Footer />
         </div>

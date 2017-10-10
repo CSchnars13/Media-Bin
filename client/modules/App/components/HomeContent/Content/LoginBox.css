@@ -1,0 +1,9 @@
+.box{
+	background-color: rgb(183, 28, 28, .4);
+	border-radius: 4px;
+	padding: 20px 20px 20px 20px;
+}
+
+#email-form{
+	width: 50%;
+}

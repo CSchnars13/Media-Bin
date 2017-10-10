@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
 import styles from './Header.css';
+require("./Header.css");
 
 export class Header extends Component{
 	constructor(props){
@@ -10,10 +11,13 @@ export class Header extends Component{
 
 	render(){
 		return (
-			<div className = "header">
-				<div className = "navbar navbar-expand-lg navbar-light bg-light">
-					<span className = "h1 navbar-brand"> Media Bin </span>
-					<div className="collapse navbar-collapse" id="navbarSupportedContent">
+			<div className = {styles.header}>
+				<div className ="navbar navbar-toggleable-md navbar-inverse bg-light">
+				<button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation-menu" aria-controls="navigation-menu" aria-expanded="false" aria-label="Toggle navigation">
+				    <span className="navbar-toggler-icon"></span>
+				 </button>
+					<span className = "h1 navbar-brand test"> Media Bin </span>
+					<div className="navbar-collapse collapse" id="navigation-menu">
 						<ul className ="navbar-nav mr-auto">
 					      <li className ="nav-item active">
 					        <a className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>

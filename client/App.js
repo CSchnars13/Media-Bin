@@ -5,15 +5,21 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import IntlWrapper from './modules/Intl/IntlWrapper';
-import 'jquery';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import Routes
 import routes from './routes';
 
 // Base stylesheet
 require('./main.css');
+require('jquery');
+require('bootstrap');
+require('tether/dist/js/tether.min.js');
+require('bootstrap/dist/css/bootstrap.min.css');
+require('./main.css');
+
+
+
+
 
 export default function App(props) {
   return (

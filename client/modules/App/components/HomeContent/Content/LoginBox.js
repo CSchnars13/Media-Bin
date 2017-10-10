@@ -10,13 +10,19 @@ export class LoginBox extends Component{
 
 	render(){
 		return (
-			<div className = "login-box">
+			<div className = {styles.box}>
+				<p className="header text-center">Sign In</p>
 				<form>
-					<textarea placeholder="Email Address"></textarea>
-					<textarea placeholder="Password"></textarea>
+					<div className = "form-group {styles.forms}">
+						<label htmlFor="email-form">Email Address</label>
+	    				<input type="email" className="form-control" id="email-form" placeholder="Email"></input>
+					</div>
+					<div className = "form-group">
+						<label htmlFor="password-form">Password</label>
+	    				<input type="email" className="form-control" id="password-form" placeholder="Password"></input>
+	    				<small className="form-text" id="forgot-pass"> Forgot password </small>
+					</div>
 				</form>
-
-				<h1> Forgot password </h1>
 			</div>
 		)
 	}
