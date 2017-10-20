@@ -10,6 +10,7 @@ import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
 import HomeContent from './components/HomeContent/HomeContent';
 import Footer from './components/Footer/Footer';
+import Dashboard from './components/User/Dashboard/Dashboard';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
