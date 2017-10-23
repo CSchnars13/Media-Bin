@@ -19,21 +19,27 @@ import { switchLanguage } from '../../modules/Intl/IntlActions';
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isMounted: false };
+    this.state = { isMounted: false, loggedIn: false };
+
+    this.toggleLogIn = this.toggleLogIn.bind(this);
   }
 
   componentDidMount() {
-    window.requestAnimationFrame(() => {
-      this.setState({isMounted: true});
-    })
     this.setState({isMounted: true});
   }
 
-  toggleAddPostSection = () => {
-    this.props.dispatch(toggleAddPost());
-  };
+  toggleLogIn() {
+    console.log("called");
+    this.setState({loggedIn: !this.state.loggedIn});
+  }
 
   render() {
+    var view;
+    if (this.state.loggedIn)
+      view = <Dashboard loginHandler={this.toggleLogIn}/>;
+    else
+      view = <HomeContent loginHandler={this.toggleLogIn}/>;
+
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
@@ -53,8 +59,12 @@ export class App extends Component {
               },
             ]}
           />
-          <Header />
-          <HomeContent />
+          <Header loggedIn={this.state.loggedIn}/>
+
+          <div className="container-fluid">
+            {view}
+          </div>
+          
           <Footer />
         </div>
       </div>

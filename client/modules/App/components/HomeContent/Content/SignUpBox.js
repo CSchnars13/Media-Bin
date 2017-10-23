@@ -1,23 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
-import styles from './LoginBox.css';
+//import styles from './AccountCreation.css';
+import styles from './SignUpBox.css';
 
-export class LoginBox extends Component{
+export class SignUpBox extends Component{
 	constructor(props){
 		super(props);
-
-		console.log(props);
-
-
 	}
 
 	render(){
 		return (
 			<div className = {styles.box}>
-				<h4 className="header text-center">Sign In</h4>
+			<h4>Create Account</h4>
 				<form>
-					<div className = "form-group {styles.forms}">
+					<div className = "form-group">
 						<label htmlFor="email-form">Email Address</label>
 	    				<input type="email" className="form-control" id="email-form" placeholder="Email"></input>
 					</div>
@@ -25,15 +22,18 @@ export class LoginBox extends Component{
 						<label htmlFor="password-form">Password</label>
 	    				<input type="email" className="form-control" id="password-form" placeholder="Password"></input>
 					</div>
+					<div className = "form-group">
+						<label htmlFor="password-form">Confirm Password</label>
+	    				<input type="email" className="form-control" id="password-confirm" placeholder="Confirm Password"></input>
+					</div>
 				</form>
-				<p> Create Account </p>
+				<p> Already have an account? Sign In </p>
 				<div className="text-center">
-					<button type="button" className="btn btn-default" onClick={this.props.loginHandler}>Log In</button>
+					<button type="button" className="btn btn-default">Sign Up</button>
 				</div>
-
 			</div>
 		)
 	}
 }
 
-export default LoginBox;
+export default SignUpBox;

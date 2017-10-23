@@ -20,16 +20,22 @@ export class Header extends Component{
 					<div className="navbar-collapse collapse" id="navigation-menu">
 						<ul className ="navbar-nav mr-auto">
 					      <li className ="nav-item active">
-					        <a className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>
+					        <a className="nav-link" href="#">{(this.props.loggedIn ? "Dashboard" : "Home")}<span className="sr-only">(current)</span></a>
+					      </li>
+					      <li className="nav-item" disabled={!this.props.loggedIn}>
+					        {!this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>About</a> : null}
 					      </li>
 					      <li className="nav-item">
-					        <a className="nav-link" href="#">About</a>
+					        {!this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Create New Account</a> : null}
+					      </li>
+					 		<li className="nav-item">
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>My Music</a> : null}
 					      </li>
 					      <li className="nav-item">
-					        <a className="nav-link" href="#">Sign In</a>
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Explore</a> : null}
 					      </li>
 					      <li className="nav-item">
-					        <a className="nav-link" href="#">Create New Account</a>
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Sign Out</a> : null}
 					      </li>
 					    </ul>
 					</div>
