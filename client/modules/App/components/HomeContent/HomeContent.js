@@ -22,9 +22,9 @@ export class HomeContent extends Component{
 	render(){
 		var userLogin;
 		if (this.state.signUp)
-			userLogin = <SignUpBox />;
+			userLogin = <SignUpBox toggleSignUp={this.toggleSignUp}/>;
 		else
-			userLogin = <LoginBox loginHandler={this.props.loginHandler}/>;
+			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.toggleSignUp}/>;
 
 		return (
 			<div className = {styles.content}>

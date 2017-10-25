@@ -26,10 +26,6 @@ export class Dashboard extends Component{
 						<ListBox />
 					</div>
 				</div>
-
-				<div className="text-center">
-					<button type="button" className="btn btn-default" onClick={this.props.loginHandler}>Log Out</button>
-				</div>
 			</div>
 		)
 	}

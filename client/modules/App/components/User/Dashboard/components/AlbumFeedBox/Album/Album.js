@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import MoP from './img/MoP.png';
 
-//import styles from './HomeContent.css';
-//import Album from './Album';
+import styles from './Album.css';
 
 export class Album extends Component{
 	constructor(props){
@@ -12,7 +11,7 @@ export class Album extends Component{
 
 	render(){
 		return (
-			<div className = "album">
+			<div className = {styles.album}>
 				<div className="row">
 					<div className="col-8">
 						<div className="albumInfo">

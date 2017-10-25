@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 
-//import styles from './HomeContent.css';
+import styles from './AlbumFeedBox.css';
 import Album from './Album/Album';
 import BlankAlbum from './BlankAlbum/BlankAlbum';
 
@@ -20,11 +20,18 @@ export class AlbumFeedBox extends Component{
 						{title: "Currents",
 						artist: "Tame Impala",
 						date: "2015"}	
-						]};
+						],
+					
+						tempTitle: null,
+						tempArtist: null,
+						tempDate: null
+
+					};
 
 		this.createAlbumForm = this.createAlbumForm.bind(this);
 		this.submitNewAlbum = this.submitNewAlbum.bind(this);
-		this.mapAlbums = this.mapAlbums.bind(this);
+		this.cancelEntry = this.cancelEntry.bind(this);
+
 	}
 
 	createAlbumForm(){
@@ -32,36 +39,33 @@ export class AlbumFeedBox extends Component{
 	}
 
 	submitNewAlbum(){
-		var newAlbum = {}; //refs
-		this.setState({albumEntry: false, albums: [...this.state.albums, newAlbum]});
+		this.setState({albumEntry: false, albums: [...this.state.albums, {title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate}]});
 
 	}
 
-	mapAlbums(){
-		return(
-			this.state.albums.map(function(item,i){
-				<Album key={i} title={item.title} artist={item.artist} date={item.date} />
-			})
-		);
+	cancelEntry(){
+		this.setState({albumEntry: false});
 	}
-
 
 	render(){
 
 		var view;
-		var albums = this.mapAlbums;
-		console.log(albums);
+		var albums = this.state.albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} />);
 
 		if(this.state.albumEntry)
-			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} />;
+			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} cancelEntry={this.cancelEntry} titleRef = {el => {this.setState({tempTitle: el.target.value}); }} 
+					artistRef = {el => {this.setState({tempArtist: el.target.value}); }} 
+					dateRef = {el => {this.setState({tempDate: el.target.value}); }} />;
 		else
 			view =
 			<div>
 				<div className="albums">
 					{albums}
 				</div>
-				<div className="text-center">
-					<button type="button" className="btn btn-default" onClick={this.createAlbumForm}>Add New Album</button>
+				<div className={styles.marginTop}>
+					<div className="text-center">
+						<button type="button" className="btn btn-default" onClick={this.createAlbumForm}>Add New Album</button>
+					</div>
 				</div>
 			</div>;
 
