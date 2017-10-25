@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
-import MoP from './img/MoP.jpg';
+import MoP from './img/MoP.png';
 
 //import styles from './HomeContent.css';
 //import Album from './Album';

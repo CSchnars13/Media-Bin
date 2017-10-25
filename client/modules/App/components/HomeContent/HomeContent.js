@@ -12,8 +12,6 @@ export class HomeContent extends Component{
 		this.state = {signUp: false};
 
 		this.toggleSignUp = this.toggleSignUp.bind(this);
-
-		console.log(props);
 	}
 
 
