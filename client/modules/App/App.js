@@ -36,7 +36,7 @@ export class App extends Component {
   render() {
     var view;
     if (this.state.loggedIn)
-      view = <Dashboard loginHandler={this.toggleLogIn}/>;
+      view = <Dashboard />;
     else
       view = <HomeContent loginHandler={this.toggleLogIn}/>;
 
@@ -59,7 +59,7 @@ export class App extends Component {
               },
             ]}
           />
-          <Header loggedIn={this.state.loggedIn}/>
+          <Header loggedIn={this.state.loggedIn} loginHandler={this.toggleLogIn} />
 
           <div className="container-fluid">
             {view}

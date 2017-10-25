@@ -26,7 +26,7 @@ export class LoginBox extends Component{
 	    				<input type="email" className="form-control" id="password-form" placeholder="Password"></input>
 					</div>
 				</form>
-				<p> Create Account </p>
+				<a onClick={this.props.toggleSignIn}> Create Account </a>
 				<div className="text-center">
 					<button type="button" className="btn btn-default" onClick={this.props.loginHandler}>Log In</button>
 				</div>

@@ -12,7 +12,7 @@ export class SignUpBox extends Component{
 	render(){
 		return (
 			<div className = {styles.box}>
-			<h4>Create Account</h4>
+			<h4 className="text-center">Create Account</h4>
 				<form>
 					<div className = "form-group">
 						<label htmlFor="email-form">Email Address</label>
@@ -27,7 +27,7 @@ export class SignUpBox extends Component{
 	    				<input type="email" className="form-control" id="password-confirm" placeholder="Confirm Password"></input>
 					</div>
 				</form>
-				<p> Already have an account? Sign In </p>
+				<a onClick={this.toggleSignUp}> Already have an account? Sign In </a>
 				<div className="text-center">
 					<button type="button" className="btn btn-default">Sign Up</button>
 				</div>

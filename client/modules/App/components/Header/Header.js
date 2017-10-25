@@ -35,7 +35,7 @@ export class Header extends Component{
 					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Explore</a> : null}
 					      </li>
 					      <li className="nav-item">
-					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Sign Out</a> : null}
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={this.props.loginHandler}>Sign Out</a> : null}
 					      </li>
 					    </ul>
 					</div>
