@@ -19,9 +19,10 @@ import { switchLanguage } from '../../modules/Intl/IntlActions';
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isMounted: false, loggedIn: false };
+    this.state = { isMounted: false, loggedIn: false, signUp: false };
 
     this.toggleLogIn = this.toggleLogIn.bind(this);
+    this.toggleSignUp = this.toggleSignUp.bind(this);
   }
 
   componentDidMount() {
@@ -29,8 +30,11 @@ export class App extends Component {
   }
 
   toggleLogIn() {
-    console.log("called");
     this.setState({loggedIn: !this.state.loggedIn});
+  }
+
+  toggleSignUp(){
+    this.setState({signUp: !this.state.signUp});
   }
 
   render() {
@@ -38,7 +42,7 @@ export class App extends Component {
     if (this.state.loggedIn)
       view = <Dashboard />;
     else
-      view = <HomeContent loginHandler={this.toggleLogIn}/>;
+      view = <HomeContent loginHandler={this.toggleLogIn} signUp={this.state.signUp} toggleSignUp={this.toggleSignUp} />;
 
     return (
       <div>
@@ -59,7 +63,7 @@ export class App extends Component {
               },
             ]}
           />
-          <Header loggedIn={this.state.loggedIn} loginHandler={this.toggleLogIn} />
+          <Header loggedIn={this.state.loggedIn} loginHandler={this.toggleLogIn} toggleSignUp={this.toggleSignUp} />
 
           <div className="container-fluid">
             {view}

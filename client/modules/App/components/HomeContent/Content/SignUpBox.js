@@ -27,7 +27,7 @@ export class SignUpBox extends Component{
 	    				<input type="email" className="form-control" id="password-confirm" placeholder="Confirm Password"></input>
 					</div>
 				</form>
-				<a onClick={this.toggleSignUp}> Already have an account? Sign In </a>
+				<a onClick={this.props.toggleSignUp}> Already have an account? Sign In </a>
 				<div className="text-center">
 					<button type="button" className="btn btn-default">Sign Up</button>
 				</div>

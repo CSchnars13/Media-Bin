@@ -9,22 +9,14 @@ import InfoBox from './Content/InfoBox';
 export class HomeContent extends Component{
 	constructor(props){
 		super(props);
-		this.state = {signUp: false};
-
-		this.toggleSignUp = this.toggleSignUp.bind(this);
 	}
-
-
-	toggleSignUp() {
-    	this.setState({signUp: !this.state.signUp});
-  	};
 
 	render(){
 		var userLogin;
-		if (this.state.signUp)
-			userLogin = <SignUpBox toggleSignUp={this.toggleSignUp}/>;
+		if (this.props.signUp)
+			userLogin = <SignUpBox toggleSignUp={this.props.toggleSignUp}/>;
 		else
-			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.toggleSignUp}/>;
+			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.props.toggleSignUp}/>;
 
 		return (
 			<div className = {styles.content}>
@@ -36,9 +28,6 @@ export class HomeContent extends Component{
 					<div className="col">
 						{userLogin}
 					</div>
-				</div>
-				<div className="text-center">
-					<button type="button" className="btn btn-primary" onClick={this.toggleSignUp}>Toggle</button>
 				</div>
 			</div>	
 		)
