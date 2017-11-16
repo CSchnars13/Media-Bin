@@ -9,6 +9,16 @@ export class SignUpBox extends Component{
 		super(props);
 	}
 
+	addUser = () => {
+		const emailRef = this.refs.email;
+		const passwordRef = this.refs.password;
+
+		if (emailRef.value && passwordRef.value){
+			this.props.addUser(emailRef, passwordRef, 'basic');
+			console.log("New account added with email: " + emailRef + " and password: " + passwordRef);
+		}
+	}
+
 	render(){
 		return (
 			<div className = {styles.box}>
@@ -16,11 +26,11 @@ export class SignUpBox extends Component{
 				<form>
 					<div className = "form-group">
 						<label htmlFor="email-form">Email Address</label>
-	    				<input type="email" className="form-control" id="email-form" placeholder="Email"></input>
+	    				<input type="email" className="form-control" id="email-form" placeholder="Email" ref="email"></input>
 					</div>
 					<div className = "form-group">
 						<label htmlFor="password-form">Password</label>
-	    				<input type="email" className="form-control" id="password-form" placeholder="Password"></input>
+	    				<input type="email" className="form-control" id="password-form" placeholder="Password" ref="password"></input>
 					</div>
 					<div className = "form-group">
 						<label htmlFor="password-form">Confirm Password</label>
@@ -29,7 +39,7 @@ export class SignUpBox extends Component{
 				</form>
 				<a onClick={this.props.toggleSignUp}> Already have an account? Sign In </a>
 				<div className="text-center">
-					<button type="button" className="btn btn-default">Sign Up</button>
+					<button type="button" className="btn btn-default" onClick={this.addUser}>Sign Up</button>
 				</div>
 			</div>
 		)

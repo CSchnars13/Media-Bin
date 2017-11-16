@@ -16,7 +16,7 @@ export class Header extends Component{
 				<button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation-menu" aria-controls="navigation-menu" aria-expanded="false" aria-label="Toggle navigation">
 				    <span className="navbar-toggler-icon"></span>
 				 </button>
-					<span className = "h1 navbar-brand test"> Media Bin </span>
+					<span className = "h1 navbar-brand test"> SoundShare </span>
 					<div className="navbar-collapse collapse" id="navigation-menu">
 						<ul className ="navbar-nav mr-auto">
 					      <li className ="nav-item active">

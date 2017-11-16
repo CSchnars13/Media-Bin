@@ -6,10 +6,16 @@ import styles from './LoginBox.css';
 export class LoginBox extends Component{
 	constructor(props){
 		super(props);
+	}
 
-		console.log(props);
+		checkCredentials = () => {
+		const emailRef = this.refs.email;
+		const passwordRef = this.refs.password;
 
-
+		if (emailRef.value && passwordRef.value){
+			this.props.checkCredentials(emailRef, passwordRef, 'basic');
+			console.log(emailRef);
+		}
 	}
 
 	render(){
@@ -19,11 +25,11 @@ export class LoginBox extends Component{
 				<form>
 					<div className = "form-group {styles.forms}">
 						<label htmlFor="email-form">Email Address</label>
-	    				<input type="email" className="form-control" id="email-form" placeholder="Email"></input>
+	    				<input type="email" className="form-control" id="email-form" placeholder="Email" ref="email"></input>
 					</div>
 					<div className = "form-group">
 						<label htmlFor="password-form">Password</label>
-	    				<input type="email" className="form-control" id="password-form" placeholder="Password"></input>
+	    				<input type="email" className="form-control" id="password-form" placeholder="Password" ref="password"></input>
 					</div>
 				</form>
 				<a onClick={this.props.toggleSignIn}> Create Account </a>

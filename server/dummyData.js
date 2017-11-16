@@ -1,4 +1,5 @@
 import Post from './models/post';
+import User from './models/user';
 
 export default function () {
   Post.count().exec((err, count) => {
@@ -42,5 +43,9 @@ export default function () {
         // console.log('ready to go....');
       }
     });
+
+    const user1 = new User({email: 'test@test.com', password: 'test', role: 'basic'});
+
+    User.create(user1);
   });
 }

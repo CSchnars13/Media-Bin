@@ -11,7 +11,7 @@ export class InfoBox extends Component{
 	render(){
 		return (
 			<div className = "info-box">
-				<h2 className="text-center"> What is Media Bin? </h2>
+				<h2 className="text-center"> What is SoundShare? </h2>
 				<h4> Catalog </h4>
 				<p> Record ratings, comments, and favorite songs on albums you have listened to </p>
 				<h4> Share </h4>

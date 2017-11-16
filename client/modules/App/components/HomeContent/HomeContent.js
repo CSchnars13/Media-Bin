@@ -6,17 +6,30 @@ import LoginBox from './Content/LoginBox';
 import SignUpBox from './Content/SignUpBox';
 import InfoBox from './Content/InfoBox';
 
+import { addUserRequest, checkCredentialsRequest } from '../../../User/UserActions';
+
 export class HomeContent extends Component{
 	constructor(props){
 		super(props);
 	}
 
+	handleAddUser = (email, password, role) => {
+    	this.props.dispatch(addUserRequest({ email, password, role }));
+	};
+
+	handleLoginAttempt = (email, password, role) => {
+		this.props.dispatch(checkCredentialsRequest({email, password, role}));
+	};
+
+
+
+
 	render(){
 		var userLogin;
 		if (this.props.signUp)
-			userLogin = <SignUpBox toggleSignUp={this.props.toggleSignUp}/>;
+			userLogin = <SignUpBox toggleSignUp={this.props.toggleSignUp} addUser = {this.handleAddUser} />;
 		else
-			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.props.toggleSignUp}/>;
+			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.props.toggleSignUp} checkCredentials = {this.handleLoginAttempt} />;
 
 		return (
 			<div className = {styles.content}>
