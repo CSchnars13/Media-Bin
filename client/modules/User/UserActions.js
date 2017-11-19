@@ -14,7 +14,7 @@ export function addUser(user) {
 
 export function addUserRequest(user) {
   return (dispatch) => {
-    return callApi('user', 'users', {
+    return callApi('users', 'post', {
       user: {
         email: user.email,
         password: user.password,
@@ -33,14 +33,14 @@ export function checkCredentials(user) {
 
 export function checkCredentialsRequest() {
   return (dispatch) => {
-    return callApi('users', 'user', {
+    return callApi('users', 'get', {
       user: {
         email: user.email,
         password: user.password,
         role: user.role,
       },
     }).then(res => {
-      dispatch(addPosts(res.user));
+      dispatch(checkCredentials(res.user));
     });
   };
 }

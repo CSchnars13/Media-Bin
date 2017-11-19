@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import styles from './HomeContent.css';
 import LoginBox from './Content/LoginBox';
@@ -7,10 +8,15 @@ import SignUpBox from './Content/SignUpBox';
 import InfoBox from './Content/InfoBox';
 
 import { addUserRequest, checkCredentialsRequest } from '../../../User/UserActions';
+import {getUsers} from '../../../User/UserReducer'
+//import User from '../../../../../server/models/user';
+
 
 export class HomeContent extends Component{
 	constructor(props){
 		super(props);
+
+		//console.log(User.count());
 	}
 
 	handleAddUser = (email, password, role) => {
@@ -45,6 +51,14 @@ export class HomeContent extends Component{
 			</div>	
 		)
 	}
+
 }
 
-export default HomeContent;
+
+function mapStateToProps(state) {
+	return {
+	   	//users: getUsers(state),
+	  };
+	}
+
+export default connect(mapStateToProps)(HomeContent);

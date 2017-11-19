@@ -6,9 +6,12 @@ import styles from './LoginBox.css';
 export class LoginBox extends Component{
 	constructor(props){
 		super(props);
+
+   this.handleLogin = this.handleLogin.bind(this);
 	}
 
-		checkCredentials = () => {
+	checkCredentials(){
+		console.log("called 2");
 		const emailRef = this.refs.email;
 		const passwordRef = this.refs.password;
 
@@ -16,6 +19,12 @@ export class LoginBox extends Component{
 			this.props.checkCredentials(emailRef, passwordRef, 'basic');
 			console.log(emailRef);
 		}
+	}
+
+	handleLogin(){
+		console.log("called");
+		this.checkCredentials();
+		this.props.loginHandler();
 	}
 
 	render(){
@@ -34,7 +43,7 @@ export class LoginBox extends Component{
 				</form>
 				<a onClick={this.props.toggleSignIn}> Create Account </a>
 				<div className="text-center">
-					<button type="button" className="btn btn-default" onClick={this.props.loginHandler}>Log In</button>
+					<button type="button" className="btn btn-default" onClick={this.handleLogin}>Log In</button>
 				</div>
 
 			</div>

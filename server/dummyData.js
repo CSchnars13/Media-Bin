@@ -44,8 +44,12 @@ export default function () {
       }
     });
 
-    const user1 = new User({email: 'test@test.com', password: 'test', role: 'basic'});
+    const user1 = new User({email: 'test@test.com', password: 'test', role: 'basic', albums: {}, subscribed: {}});
 
-    User.create(user1);
+    User.create(user1, (error) => {
+      if (!error) {
+        console.log('Test User successfully logged');
+      }
+    });
   });
 }
