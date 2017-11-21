@@ -7,24 +7,22 @@ import LoginBox from './Content/LoginBox';
 import SignUpBox from './Content/SignUpBox';
 import InfoBox from './Content/InfoBox';
 
-import { addUserRequest, checkCredentialsRequest } from '../../../User/UserActions';
+import { addUserRequest, getUserRequest } from '../../../User/UserActions';
 import {getUsers} from '../../../User/UserReducer'
-//import User from '../../../../../server/models/user';
+
 
 
 export class HomeContent extends Component{
 	constructor(props){
 		super(props);
-
-		//console.log(User.count());
 	}
 
 	handleAddUser = (email, password, role) => {
     	this.props.dispatch(addUserRequest({ email, password, role }));
 	};
 
-	handleLoginAttempt = (email, password, role) => {
-		this.props.dispatch(checkCredentialsRequest({email, password, role}));
+	handleLoginAttempt = (email) => {
+		this.props.dispatch(getUserRequest(email));
 	};
 
 
@@ -57,7 +55,7 @@ export class HomeContent extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	//users: getUsers(state),
+	   	users: getUsers(state),
 	  };
 	}
 

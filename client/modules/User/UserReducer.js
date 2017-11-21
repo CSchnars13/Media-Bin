@@ -1,4 +1,4 @@
-import { ADD_USER, CHECK_CREDS } from './UserActions';
+import { ADD_USER} from './UserActions';
 
 // Initial State
 const initialState = { data: [] };
@@ -9,12 +9,12 @@ const UserReducer = (state = initialState, action) => {
       return {
         data: [action.user, ...state.data],
       };
-
-    case CHECK_CREDS :
+/*
+    case GET_USER:
       return {
-        data: state.data.filter(user => (user.email !== action.email && user.password !== action.email)),
+        data: [action.user, ...state.data],
       };
-
+      */
     default:
       return state;
   }
@@ -23,10 +23,10 @@ const UserReducer = (state = initialState, action) => {
 /* Selectors */
 
 // Get all posts
-export const getUsers = state => state.users.data;
+export const getUsers = state => state.user.data;
 
 // Get post by cuid
-export const getUser = (state, email, password) => state.users.data.filter(user => user.email === email && user.password === password)[0];
+export const getUser = (state, email) => state.user.data.filter(user => user.email === email)[0];
 
 // Export Reducer
 export default UserReducer;

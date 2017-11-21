@@ -10,10 +10,12 @@ export class SignUpBox extends Component{
 	}
 
 	addUser = () => {
-		const emailRef = this.refs.email;
-		const passwordRef = this.refs.password;
+		const emailRef = this.refs.email.value;
+		const passwordRef = this.refs.password.value;
 
-		if (emailRef.value && passwordRef.value){
+		console.log(emailRef, passwordRef);
+
+		if (emailRef && passwordRef){
 			this.props.addUser(emailRef, passwordRef, 'basic');
 			console.log("New account added with email: " + emailRef + " and password: " + passwordRef);
 		}

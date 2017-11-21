@@ -1,8 +1,8 @@
 import callApi from '../../util/apiCaller';
 
 // Export Constants
-export const ADD_USER = 'ADD_POST';
-export const CHECK_CREDS = 'CHECK_CREDS';
+export const ADD_USER = 'ADD_USER';
+export const GET_USER = 'GET_USER';
 
 // Export Actions
 export function addUser(user) {
@@ -13,34 +13,32 @@ export function addUser(user) {
 }
 
 export function addUserRequest(user) {
+  console.log("Attempting to perform action");
   return (dispatch) => {
     return callApi('users', 'post', {
       user: {
         email: user.email,
         password: user.password,
         role: user.role,
+        albums: [],
+        following: [],
       },
-    }).then(res => dispatch(addPost(res.user)));
+    }).then(res => dispatch(addUser(res.user)));
   };
 }
-
-export function checkCredentials(user) {
+/*
+export function getUser(user) {
   return {
-    type: CHECK_CREDS,
+    type: GET_USER,
     user,
   };
 }
-
-export function checkCredentialsRequest() {
+*/
+export function getUserRequest(email) {
   return (dispatch) => {
-    return callApi('users', 'get', {
-      user: {
-        email: user.email,
-        password: user.password,
-        role: user.role,
-      },
-    }).then(res => {
-      dispatch(checkCredentials(res.user));
+    return callApi(`users/${email}`).then(res => {
+      console.log(res.user.email);
+      dispatch(addUser(res.user));
     });
   };
 }
