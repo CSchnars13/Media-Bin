@@ -1,33 +1,55 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import styles from './LoginBox.css';
+
+import {getUsers} from '../../../../User/UserReducer'
 
 export class LoginBox extends Component{
 	constructor(props){
 		super(props);
 
-   this.handleLogin = this.handleLogin.bind(this);
+   	this.handleLogin = this.handleLogin.bind(this);
+
+   	this.state = {
+	   	error: {
+	   		msg: "Login failed - invalid email/password",
+	   		show: false,
+		},
+
+		test: false,
+	}
 	}
 
 	checkCredentials(){
-		console.log("called 2");
-		const emailRef = this.refs.email;
-		const passwordRef = this.refs.password;
+		const emailRef = this.refs.email.value;
 
-		if (emailRef.value && passwordRef.value){
-			this.props.checkCredentials(emailRef, passwordRef, 'basic');
+		if (emailRef){
 			console.log(emailRef);
+			this.props.checkCredentials(emailRef);
+			
 		}
 	}
 
 	handleLogin(){
-		console.log("called");
 		this.checkCredentials();
-		this.props.loginHandler();
+		setTimeout(function(){
+			if (this.props.user.length > 0)
+				this.props.loginHandler();
+			else{
+				console.log("no login", this.state.error.show);
+				this.setState({error: {show: true, msg: this.state.error.msg}});
+				console.log("no login", this.state.error.show);
+			}
+		}.bind(this), 1000);
+
+		
+		
 	}
 
 	render(){
+		console.log(this.state.error.show, this.state.error.msg);
 		return (
 			<div className = {styles.box}>
 				<h4 className="header text-center">Sign In</h4>
@@ -45,10 +67,17 @@ export class LoginBox extends Component{
 				<div className="text-center">
 					<button type="button" className="btn btn-default" onClick={this.handleLogin}>Log In</button>
 				</div>
+				<h6 className="text-center"> {(this.state.error.show ? this.state.error.msg : "")} </h6>
 
 			</div>
 		)
 	}
 }
 
-export default LoginBox;
+function mapStateToProps(state) {
+	return {
+	   	user: getUsers(state),
+	  };
+	}
+
+export default connect(mapStateToProps)(LoginBox);

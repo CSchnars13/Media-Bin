@@ -10,6 +10,7 @@ import { configureStore } from './store';
 // Initialize store
 const store = configureStore(window.__INITIAL_STATE__);
 const mountApp = document.getElementById('root');
+console.log(store.getState());
 
 render(
   <AppContainer>
