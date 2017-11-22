@@ -24,7 +24,7 @@ export class BlankAlbum extends Component{
 					</div>
 					<div className="form-group">
 					    <label htmlFor="ratingForm">Rating</label>
-					    <select className="form-control" id="ratingForm">
+					    <select className="form-control" id="ratingForm" onChange={this.props.ratingRef}>
 					      <option>5</option>
 					      <option>4</option>
 					      <option>3</option>
@@ -33,7 +33,7 @@ export class BlankAlbum extends Component{
 					    </select>
 					</div>
 					<div className="form-group">
-					    <textarea className="form-control" id="Comments" placeholder="Comments"></textarea>
+					    <textarea className="form-control" id="Comments" placeholder="Comments" onChange={this.props.commentRef}></textarea>
 					 </div>
 				</form>
 				<div className="text-center">

@@ -38,9 +38,7 @@ export class LoginBox extends Component{
 			if (this.props.user.length > 0)
 				this.props.loginHandler();
 			else{
-				console.log("no login", this.state.error.show);
 				this.setState({error: {show: true, msg: this.state.error.msg}});
-				console.log("no login", this.state.error.show);
 			}
 		}.bind(this), 1000);
 
@@ -49,7 +47,6 @@ export class LoginBox extends Component{
 	}
 
 	render(){
-		console.log(this.state.error.show, this.state.error.msg);
 		return (
 			<div className = {styles.box}>
 				<h4 className="header text-center">Sign In</h4>

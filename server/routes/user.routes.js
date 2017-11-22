@@ -11,4 +11,6 @@ router.route('/users/:email').get(UserController.getUser);
 // Add a new User
 router.route('/users').post(UserController.addUser);
 
+router.route('/users/:email').post(UserController.addAlbum);
+
 export default router;
