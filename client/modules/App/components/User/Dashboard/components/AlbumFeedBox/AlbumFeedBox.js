@@ -1,30 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import styles from './AlbumFeedBox.css';
 import Album from './Album/Album';
 import BlankAlbum from './BlankAlbum/BlankAlbum';
+
+import { addAlbumRequest } from '../../../../../../User/UserActions';
+import {getUsers} from '../../../../../../User/UserReducer'
 
 export class AlbumFeedBox extends Component{
 	constructor(props){
 		super(props);
 
 		this.state={albumEntry: false,
-					albums: [
-						{title: "Master of Puppets",
-						artist: "Metallica",
-						date: "1983"},
-						{title: "Luv is Rage 2",
-						artist: "Lil Uzi Vert",
-						date: "2017"},						
-						{title: "Currents",
-						artist: "Tame Impala",
-						date: "2015"}	
-						],
-					
 						tempTitle: null,
 						tempArtist: null,
-						tempDate: null
+						tempDate: null,
+						tempRating: null,
+						tempComment: null
 
 					};
 
@@ -39,7 +33,9 @@ export class AlbumFeedBox extends Component{
 	}
 
 	submitNewAlbum(){
-		this.setState({albumEntry: false, albums: [...this.state.albums, {title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate}]});
+		console.log("Submit New Album called");
+		this.setState({albumEntry: false});
+		this.props.dispatch(addAlbumRequest(this.props.user[0].email, { title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate, rating: this.state.tempRating, comment: this.state.tempComment}));
 
 	}
 
@@ -50,12 +46,15 @@ export class AlbumFeedBox extends Component{
 	render(){
 
 		var view;
-		var albums = this.state.albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} />);
+		var albums = this.props.user[0].albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} rating={item.rating} comment={item.comment}/>);
 
 		if(this.state.albumEntry)
-			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} cancelEntry={this.cancelEntry} titleRef = {el => {this.setState({tempTitle: el.target.value}); }} 
+			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} cancelEntry={this.cancelEntry} 
+					titleRef = {el => {this.setState({tempTitle: el.target.value}); }} 
 					artistRef = {el => {this.setState({tempArtist: el.target.value}); }} 
-					dateRef = {el => {this.setState({tempDate: el.target.value}); }} />;
+					dateRef = {el => {this.setState({tempDate: el.target.value}); }} 
+					ratingRef = {el => {this.setState({tempRating: el.target.value}); }}
+					commentRef = {el => {this.setState({tempComment: el.target.value}); }} />;
 		else
 			view =
 			<div>
@@ -78,4 +77,10 @@ export class AlbumFeedBox extends Component{
 	}
 }
 
-export default AlbumFeedBox;
+function mapStateToProps(state) {
+	return {
+	   	user: getUsers(state),
+	  };
+	}
+
+export default connect(mapStateToProps)(AlbumFeedBox);

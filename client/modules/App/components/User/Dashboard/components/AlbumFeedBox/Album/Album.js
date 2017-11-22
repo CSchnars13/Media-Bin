@@ -18,6 +18,8 @@ export class Album extends Component{
 							<h6> {this.props.title} </h6>
 							<h6> {this.props.artist} </h6>
 							<h6> {this.props.date} </h6>
+							<h6> {this.props.rating} </h6>
+							<h6> {this.props.comment} </h6>
 						</div>
 					</div>
 					<div className="col-4 align-self-center">

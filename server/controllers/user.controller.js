@@ -17,7 +17,6 @@ export function getUsers(req, res) {
 }
 
 export function getUser(req, res) {
-  console.log("Entered get user");
   User.findOne({ email: req.params.email }).exec((err, user) => {
     if (err) {
       console.log(err);
@@ -37,7 +36,6 @@ export function getUser(req, res) {
  * @returns void
  */
 export function addUser(req, res) {
-  console.log("Made it to server side");
   if (!req.body.user.email || !req.body.user.password || !req.body.user.role) {
     res.status(403).end();
   }
@@ -50,6 +48,30 @@ export function addUser(req, res) {
     }
     else{
       res.json({ user: saved });
+    }
+  });
+}
+
+export function addAlbum(req, res) {
+  if (!req.body.album.title || !req.body.album.artist || !req.body.album.date || !req.body.album.rating || !req.body.album.comment ) {
+    res.status(403).end();
+  }
+
+  const newAlbum = req.body.album;
+
+    User.findOne({ email: req.params.email }).exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      user.albums = [newAlbum, ...user.albums];
+      user.save(function(err){
+        if (err)
+          return res.status(500).send(err);
+      });
+      console.log(user.albums);
+      res.json({ album: user.albums[0] });
     }
   });
 }
