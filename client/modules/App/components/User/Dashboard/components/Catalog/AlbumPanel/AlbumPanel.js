@@ -34,7 +34,7 @@ export class AlbumPanel extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	user: getUsers(state),
+	   	//user: getUsers(state),
 	  };
 	}
 

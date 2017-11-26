@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 //import styles from './Catalog.css';
-
+import AlbumPanel from './AlbumPanel/AlbumPanel'
 
 //import {getUsers} from '../../../../User/UserReducer'
 
@@ -37,7 +37,7 @@ export class Catalog extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	user: getUsers(state),
+	   	//user: getUsers(state),
 	  };
 	}
 

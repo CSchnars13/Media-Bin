@@ -64,14 +64,14 @@ export class EventBox extends Component{
 				</div>
 				<div className={styles.marginTop}>
 					<div className="text-center">
-						<button type="button" className="btn btn-default" onClick={this.createEventForm}>Add New Album</button>
+						<button type="button" className="btn btn-default" onClick={this.createEventForm}>Add New Event</button>
 					</div>
 				</div>
 			</div>;
 
 		return (
 			<div className = "eventFeed">
-			<h4 className="text-center">{this.state.eventEntry ? "Add New Album" : "Latest Albums"}</h4>
+			<h4 className="text-center">{this.state.eventEntry ? "Add New Event" : "Latest Events"}</h4>
 				{view}
 			</div>
 		)
