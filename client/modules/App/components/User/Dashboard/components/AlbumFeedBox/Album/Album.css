@@ -1,3 +1,7 @@
 .album{
 	border-bottom: 1px solid
 }
+
+.comment{
+	font-style: italic;
+}

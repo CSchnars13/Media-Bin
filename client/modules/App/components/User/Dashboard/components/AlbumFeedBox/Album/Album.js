@@ -25,15 +25,18 @@ export class Album extends Component{
 				<div className="row">
 					<div className="col-8">
 						<div className="albumInfo">
-							<h6> {this.props.title} </h6>
-							<h6> {this.props.artist} </h6>
-							<h6> {this.props.date} </h6>
+							<h4> {this.props.title} </h4>
+							<h5> {this.props.artist} </h5>
+							<h5> {this.props.date} </h5>
+							<br />
+							<br />
 							<h6> Rating: {this.props.rating} </h6>
-							<h6> {this.props.comment} </h6>
+							<br />
+							<h6 className={styles.comment}> {this.props.comment} </h6>
 						</div>
 					</div>
 					<div className="col-4 align-self-center">
-						<img className="img-fluid" src={album} />
+						<img className="img-fluid" height="250" width="250" src={album} />
 					</div>
 				</div>
 			</div>

@@ -21,39 +21,39 @@ export class Dashboard extends Component{
 	render(){
 		var header;
 		var view;
-		if (this.props.user.length > 0)
-			header = this.props.user[0].email;
-		else
-			header = "";
-					console.log(this.props.view);
+
 		switch(this.props.view){
 			case "dashboard": 
-			console.log("dash");
+			header = "User Dashboard";
 			view =	
 				<div>			
 					<div className="row">
 						<div className="col">
 							<AlbumFeedBox />
-							<PlaylistBox />
 						</div>
 						<div className="col">
 							<EventBox />
-							<ListBox />
 						</div>
 					</div>
 				</div>;
 			break;
-			case "catalog": view = <Catalog />;
+			case "catalog": 
+			header = "User Catalog";
+			view = <Catalog />;
 			break;
-			case "social": view = <Social />;
+			case "social": 
+			header = "User Feed";
+			view = <Social />;
 			break;
 			default: 
+			header = "";
 			view = <div></div>;
 		}
 
 		return (
 			<div className = {styles.dashboard}>
 				<h1 className = "text-center">{header}</h1>
+				<br />
 				{view}
 			</div>
 		)

@@ -19,7 +19,7 @@ export class Header extends Component{
 					<span className = "h1 navbar-brand test"> SoundShare </span>
 					<div className="navbar-collapse collapse" id="navigation-menu">
 						<ul className ="navbar-nav mr-auto">
-					      <li className ="nav-item active">
+					      <li className ="nav-item">
 					        <a className="nav-link" href="#" onClick={() => this.props.switchView("dashboard")}>{(this.props.loggedIn ? "Dashboard" : "Home")}<span className="sr-only">(current)</span></a>
 					      </li>
 					      <li className="nav-item" disabled={!this.props.loggedIn}>
@@ -28,7 +28,7 @@ export class Header extends Component{
 					      <li className="nav-item">
 					        {!this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={this.props.toggleSignUp}>Create New Account</a> : null}
 					      </li>
-					 		<li className="nav-item">
+					 		<li className="nav-item active">
 					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={() => this.props.switchView("catalog")}>My Music</a> : null}
 					      </li>
 					      <li className="nav-item">

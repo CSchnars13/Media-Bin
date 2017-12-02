@@ -7,7 +7,6 @@ import User from '../models/user';
  * @returns void
  */
 export function getUsers(req, res) {
-  console.log("In the get users method");
   User.find().sort('-role').exec((err, users) => {
     if (err) {
       res.status(500).send(err);
@@ -29,12 +28,6 @@ export function getUser(req, res) {
   });
 }
 
-/**
- * Save a post
- * @param req
- * @param res
- * @returns void
- */
 export function addUser(req, res) {
   if (!req.body.user.email || !req.body.user.password || !req.body.user.role) {
     res.status(403).end();

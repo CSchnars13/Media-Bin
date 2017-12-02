@@ -1,16 +1,9 @@
-/**
- * This is an example of a basic node.js script that performs
- * the Client Credentials oAuth2 flow to authenticate against
- * the Spotify Accounts.
- *
- * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow
- */
 
 var request = require('request'); // "Request" library
 
-var client_id = 'CLIENT_ID'; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
+export default function(){
+var client_id = '0ecfdfec604944a89010d58a76ff1e2e'; // Your client id
+var client_secret = '157ffc20849e4e32afcfa7c351fb4113'; // Your secret
 
 // your application requests authorization
 var authOptions = {
@@ -41,3 +34,4 @@ request.post(authOptions, function(error, response, body) {
     });
   }
 });
+}

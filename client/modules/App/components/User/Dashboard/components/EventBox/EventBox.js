@@ -11,15 +11,18 @@ export class EventBox extends Component{
 
 		this.state={eventEntry: false,
 					events: [
-						{name: "Master of Puppets",
-						location: "Metallica",
-						date: "1983"},
-						{name: "Luv is Rage 2",
-						location: "Lil Uzi Vert",
-						date: "2017"},						
-						{name: "Currents",
-						location: "Tame Impala",
-						date: "2015"}	
+						{name: "RARE Music Festival",
+						location: "Orlando, FL",
+						date: "2017"},
+						{name: "Lil Wayne at UF",
+						location: "Gainesville, FL",
+						date: "2017"},
+						{name: "Okeechobee Music Festival",
+						location: "Okeechobee, FL",
+						date: "2016"},
+						{name: "Bonnaroo Music Festival",
+						location: "Manchester, TN",
+						date: "2015"},
 						],
 					
 						tempName: null,
@@ -50,11 +53,11 @@ export class EventBox extends Component{
 	render(){
 
 		var view;
-		var events = this.state.events.map((item,i) => <Event key={i} name={item.name} artist={item.location} date={item.date} />);
+		var events = this.state.events.map((item,i) => <Event key={i} name={item.name} location={item.location} date={item.date} />);
 
 		if(this.state.eventEntry)
 			view = <BlankEvent submitNewEvent={this.submitNewEvent} cancelEntry={this.cancelEntry} nameRef = {el => {this.setState({tempName: el.target.value}); }} 
-					locationRef = {el => {this.setState({tempArtist: el.target.value}); }} 
+					locationRef = {el => {this.setState({tempLocation: el.target.value}); }} 
 					dateRef = {el => {this.setState({tempDate: el.target.value}); }} />;
 		else
 			view =
@@ -71,7 +74,7 @@ export class EventBox extends Component{
 
 		return (
 			<div className = "eventFeed">
-			<h4 className="text-center">{this.state.eventEntry ? "Add New Event" : "Latest Events"}</h4>
+			<h2 className="text-center">{this.state.eventEntry ? "Add New Event" : "Latest Events"}</h2>
 				{view}
 			</div>
 		)
