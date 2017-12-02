@@ -34,6 +34,7 @@ import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import users from './routes/user.routes';
 import dummyData from './dummyData';
+import spotify from './spotify';
 import serverConfig from './config';
 
 // Set native promises as mongoose promise
@@ -144,7 +145,8 @@ app.use((req, res, next) => {
 // start app
 app.listen(serverConfig.port, (error) => {
   if (!error) {
-    console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+    console.log(`SoundShare is running on port: ${serverConfig.port}!`); // eslint-disable-line
+    spotify();
   }
 });
 

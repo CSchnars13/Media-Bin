@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 //import styles from './Catalog.css';
-
+import Feed from './Feed/Feed';
+import Discover from './Discover/Discover';
 
 //import {getUsers} from '../../../../User/UserReducer'
 
@@ -18,10 +19,12 @@ export class Social extends Component{
 
 	render(){
 		var view;
-		if (discoverToggle)
+		if (this.state.discoverToggle)
 			view = 
-				<Feed />
-				<Discover />;
+				<div>
+					<Feed />
+					<Discover />;
+				</div>
 		else
 			view = <Feed />;
 
@@ -36,7 +39,7 @@ export class Social extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	user: getUsers(state),
+	   	//user: getUsers(state),
 	  };
 	}
 

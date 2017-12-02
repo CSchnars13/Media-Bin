@@ -31,7 +31,7 @@ export class Discover extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	user: getUsers(state),
+	   	//user: getUsers(state),
 	  };
 	}
 

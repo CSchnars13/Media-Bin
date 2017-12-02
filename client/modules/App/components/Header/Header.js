@@ -19,8 +19,8 @@ export class Header extends Component{
 					<span className = "h1 navbar-brand test"> SoundShare </span>
 					<div className="navbar-collapse collapse" id="navigation-menu">
 						<ul className ="navbar-nav mr-auto">
-					      <li className ="nav-item active">
-					        <a className="nav-link" href="#">{(this.props.loggedIn ? "Dashboard" : "Home")}<span className="sr-only">(current)</span></a>
+					      <li className ="nav-item">
+					        <a className="nav-link" href="#" onClick={() => this.props.switchView("dashboard")}>{(this.props.loggedIn ? "Dashboard" : "Home")}<span className="sr-only">(current)</span></a>
 					      </li>
 					      <li className="nav-item" disabled={!this.props.loggedIn}>
 					        {!this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>About</a> : null}
@@ -28,11 +28,11 @@ export class Header extends Component{
 					      <li className="nav-item">
 					        {!this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={this.props.toggleSignUp}>Create New Account</a> : null}
 					      </li>
-					 		<li className="nav-item">
-					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>My Music</a> : null}
+					 		<li className="nav-item active">
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={() => this.props.switchView("catalog")}>My Music</a> : null}
 					      </li>
 					      <li className="nav-item">
-					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn}>Explore</a> : null}
+					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={() => this.props.switchView("social")}>Explore</a> : null}
 					      </li>
 					      <li className="nav-item">
 					        {this.props.loggedIn ? <a className="nav-link" href="#" disabled={this.props.loggedIn} onClick={this.props.loginHandler}>Sign Out</a> : null}

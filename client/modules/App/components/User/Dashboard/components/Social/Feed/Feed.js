@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 //import styles from './Catalog.css';
 
 
+
 //import {getUsers} from '../../../../User/UserReducer'
 
 
@@ -13,15 +14,6 @@ export class Feed extends Component{
 	}
 
 	render(){
-		var view;
-		if (discoverToggle)
-			view = 
-				<Feed />
-				<Discover />;
-		else
-			view = <Feed />;
-
-
 		return (
 			<div className = "Feed">
 				<div className="row">
@@ -42,7 +34,7 @@ export class Feed extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	user: getUsers(state),
+	   	//user: getUsers(state),
 	  };
 	}
 

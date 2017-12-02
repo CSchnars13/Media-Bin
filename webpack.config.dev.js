@@ -50,12 +50,15 @@ module.exports = {
         loader: 'babel',
       }, {
         test: /\.(jpe?g|gif|png|svg)$/i,
-        loader: 'url-loader?limit=10000',
+        loader: 'url-loader',
+        options: {
+          limit: 25000,
+        },
       }, {
         test: /\.json$/,
         loader: 'json-loader',
       }, { 
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+        test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ],
   },
 

@@ -13,7 +13,7 @@ export class Event extends Component{
 			<div className = {styles.event}>
 				<div className="row">
 					<div className="eventInfo">
-							<h6> {this.props.name} </h6>
+							<h5> {this.props.name} </h5>
 							<h6> {this.props.location} </h6>
 							<h6> {this.props.date} </h6>
 					</div>

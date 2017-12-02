@@ -19,10 +19,11 @@ import { switchLanguage } from '../../modules/Intl/IntlActions';
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isMounted: false, loggedIn: false, signUp: false };
+    this.state = { isMounted: false, loggedIn: false, signUp: false, dashboardView: "dashboard" };
 
     this.toggleLogIn = this.toggleLogIn.bind(this);
     this.toggleSignUp = this.toggleSignUp.bind(this);
+    this.setDashboardView = this.setDashboardView.bind(this);
   }
 
   componentDidMount() {
@@ -37,10 +38,15 @@ export class App extends Component {
     this.setState({signUp: !this.state.signUp});
   }
 
+  setDashboardView(view){
+    console.log(view);
+    this.setState({dashboardView: view});
+  }
+
   render() {
     var view;
     if (this.state.loggedIn)
-      view = <Dashboard />;
+      view = <Dashboard view={this.state.dashboardView} />;
     else
       view = <HomeContent loginHandler={this.toggleLogIn} signUp={this.state.signUp} toggleSignUp={this.toggleSignUp} />;
 
@@ -63,7 +69,7 @@ export class App extends Component {
               },
             ]}
           />
-          <Header loggedIn={this.state.loggedIn} loginHandler={this.toggleLogIn} toggleSignUp={this.toggleSignUp} />
+          <Header loggedIn={this.state.loggedIn} loginHandler={this.toggleLogIn} toggleSignUp={this.toggleSignUp} switchView= {this.setDashboardView}/>
 
           <div className="container-fluid">
             {view}

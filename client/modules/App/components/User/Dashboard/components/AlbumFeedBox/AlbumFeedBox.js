@@ -70,7 +70,7 @@ export class AlbumFeedBox extends Component{
 
 		return (
 			<div className = "albumFeed">
-			<h4 className="text-center">{this.state.albumEntry ? "Add New Album" : "Latest Albums"}</h4>
+			<h2 className="text-center">{this.state.albumEntry ? "Add New Album" : "Latest Albums"}</h2>
 				{view}
 			</div>
 		)
