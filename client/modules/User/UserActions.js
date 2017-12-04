@@ -65,3 +65,4 @@ export function addAlbumRequest(email, album) {
     });
   };
 }
+

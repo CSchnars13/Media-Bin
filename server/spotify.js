@@ -24,10 +24,11 @@ request.post(authOptions, function(error, response, body) {
     var token = body.access_token;
     var options = {
         url: 'https://api.spotify.com/v1/search',
-        data: {
-          query: 'currents',
-          type: 'album',
+        qs: {
+          q: 'birds+in+the+trap+sing+mcknight',
+          type: 'album'
         },
+
         headers: {
           'Authorization': 'Bearer ' + token
         },
@@ -38,6 +39,7 @@ request.post(authOptions, function(error, response, body) {
 
     request.get(options, function(error, response, body) {
       console.log(body);
+      console.log(body.albums.items[0]);
     });
   }
 });

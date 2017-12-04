@@ -1,25 +1,22 @@
 import React, { Component} from 'react';
+import { connect } from 'react-redux';
 
 import styles from './Album.css';
+import {getAllArt} from '../../../../../../../User/ArtReducer'
 
-const art = require('./img/MasterofPuppets.png');
-const art2 = require('./img/Currents.png');
+const loadingPlaceholder = require('./img/loading.png');
+
 export class Album extends Component{
 	constructor(props){
 		super(props);
-		var name = this.props.title.replace(/\s/g,'');
-		console.log(name);
-
 	}
 
-	
-
 	render(){
-		var album;
-		if (this.props.title === "Master of Puppets")
-			album = art;
-		else
-			album = art2;
+		var albumObject = this.props.art.filter((art) => art.title === this.props.title)[0];
+		if (albumObject){
+			console.log(albumObject);
+		}
+
 		return (
 			<div className = {styles.album}>
 				<div className="row">
@@ -36,7 +33,9 @@ export class Album extends Component{
 						</div>
 					</div>
 					<div className="col-4 align-self-center">
-						<img className="img-fluid" height="250" width="250" src={album} />
+						<img className="img-fluid" height={albumObject ? albumObject.medArt.height : "300"} 
+						width={albumObject ? albumObject.medArt.width : "300"}
+						 src={albumObject ? albumObject.medArt.url : loadingPlaceholder} />
 					</div>
 				</div>
 			</div>
@@ -44,4 +43,10 @@ export class Album extends Component{
 	}
 }
 
-export default Album;
+function mapStateToProps(state) {
+	return {
+	   art: getAllArt(state),
+	  };
+	}
+
+export default connect(mapStateToProps)(Album);

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import styles from './AlbumFeedBox.css';
@@ -7,6 +6,7 @@ import Album from './Album/Album';
 import BlankAlbum from './BlankAlbum/BlankAlbum';
 
 import { addAlbumRequest } from '../../../../../../User/UserActions';
+import { getAlbumArtRequest } from '../../../../../../User/ArtActions';
 import {getUsers} from '../../../../../../User/UserReducer'
 
 export class AlbumFeedBox extends Component{
@@ -28,14 +28,20 @@ export class AlbumFeedBox extends Component{
 
 	}
 
+	componentDidMount(){
+		for (var i = 0; i < this.props.user[0].albums.length; i++){
+			this.props.dispatch(getAlbumArtRequest(this.props.user[0].albums[i].title));
+		}
+	}
+
 	createAlbumForm(){
 		this.setState({albumEntry: true});
 	}
 
 	submitNewAlbum(){
-		console.log("Submit New Album called");
 		this.setState({albumEntry: false});
 		this.props.dispatch(addAlbumRequest(this.props.user[0].email, { title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate, rating: this.state.tempRating, comment: this.state.tempComment}));
+		this.props.dispatch(getAlbumArtRequest(this.state.tempTitle));
 
 	}
 
