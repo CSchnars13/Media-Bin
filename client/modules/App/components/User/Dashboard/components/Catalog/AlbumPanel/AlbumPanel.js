@@ -1,19 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import {getAllArt} from '../../../../../../../User/ArtReducer'
+import {getAlbumArtRequest} from '../../../../../../../User/ArtActions'
+
 //import styles from './Catalog.css';
 
 
 //import {getUsers} from '../../../../User/UserReducer'\
 
-const art = require('./img/MasterofPuppets.png');
-const art2 = require('./img/Currents.png');
-const art3 = require('./img/LuvIsRage2.png');
-const art4 = require('./img/RandomAccessMemories.png');
-const art5 = require('./img/Boston.png');
-const art6 = require('./img/ARushOfBloodToTheHead.png');
-
-
+const loadingPlaceholder = require('./img/loading.png');
 
 export class AlbumPanel extends Component{
 	constructor(props){
@@ -21,23 +17,16 @@ export class AlbumPanel extends Component{
 	}
 
 	render(){
-		var album;
-		if (this.props.title === "Master of Puppets")
-			album = art;
-		else if (this.props.title === "Currents")
-			album = art2;
-		else if (this.props.title === "Luv is Rage 2")
-			album = art3;
-		else if (this.props.title === "Random Access Memories")
-			album = art4;
-		else if (this.props.title === "Boston")
-			album= art5;
-		else
-			album=art6;
+		var artObject = this.props.art.filter((art) => art.title === this.props.title)[0];
+
+		if (artObject)
+			console.log(artObject);
 
 		return (
 			<div className = "AlbumPanel">
-				<img className = "img-fluid" height="400" width="400" src={album} />
+				<img className = "img-fluid" height={artObject ? artObject.lgArt.height : '640'} 
+				width={artObject ? artObject.lgArt.width : '640'} 
+				src={artObject ? artObject.lgArt.url || artObject.mdArt.url : loadingPlaceholder} />
 
 
 				<div className = "AlbumInfo">
@@ -52,7 +41,7 @@ export class AlbumPanel extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	//user: getUsers(state),
+	   	art: getAllArt(state),
 	  };
 	}
 

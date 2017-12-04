@@ -63,7 +63,6 @@ export function addAlbum(req, res) {
         if (err)
           return res.status(500).send(err);
       });
-      console.log(user.albums);
       res.json({ album: user.albums[0] });
     }
   });

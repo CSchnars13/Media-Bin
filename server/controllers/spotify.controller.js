@@ -16,16 +16,18 @@ var authOptions = {
   json: true
 };
 
-export function getUser(req, res) {
+export function getAlbumArt(req, res) {
+	console.log("In spotify controller");
 	request.post(authOptions, function(error, response, body) {
 	  if (!error && response.statusCode === 200) {
+	  	var query = req.params.title.replace(/\s/g, "+");
 
 	    // use the access token to access the Spotify Web API
 	    var token = body.access_token;
 	    var options = {
 	      url: 'https://api.spotify.com/v1/search',
-	      data: {
-	      	q: req.album,
+	      qs: {
+	      	q: query,
 	      	type: 'album'
 	      },
 	      headers: {
@@ -34,7 +36,16 @@ export function getUser(req, res) {
 	      json: true
 	    };
 	    request.get(options, function(error, response, body) {
-	      console.log(body);
+	   		if (error)
+	      		return res.status(500).send(err);
+	    	else{
+	      		var med_art = body.albums.items[0].images[1];
+	      		var large_art = body.albums.items[0].images[0];
+
+	      		res.json({medArt: med_art, lgArt: large_art});
+	      	}
+
+
 	    });
 	  }
 	});

@@ -1,4 +1,4 @@
-import { ADD_USER, ADD_ALBUM} from './UserActions';
+import { ADD_USER, ADD_ALBUM, ADD_ALBUM_ART} from './UserActions';
 
 // Initial State
 const initialState = { data: [] };
@@ -12,13 +12,15 @@ const UserReducer = (state = initialState, action) => {
 
     case ADD_ALBUM:
       if (state.data.length > 0){
-        console.log("Pushing album");
         state.data[0].albums = [action.album, ...state.data[0].albums];
 
       }
       return {
         data: [...state.data],
       };
+
+    case ADD_ALBUM_ART:
+      state.data[0].albums.filter(title => album.title === title)[0].art
       
     default:
       return state;
@@ -27,7 +29,7 @@ const UserReducer = (state = initialState, action) => {
 
 /* Selectors */
 
-// Get all posts
+// Get all users
 export const getUsers = state => state.user.data;
 
 // Get post by cuid
