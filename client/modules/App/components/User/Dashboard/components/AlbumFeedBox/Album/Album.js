@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styles from './Album.css';
 import {getAllArt} from '../../../../../../../User/ArtReducer'
 
-const loadingPlaceholder = require('./img/loading.png');
+const loadingPlaceholder = require('./loading.png');
 
 export class Album extends Component{
 	constructor(props){
@@ -13,9 +13,6 @@ export class Album extends Component{
 
 	render(){
 		var albumObject = this.props.art.filter((art) => art.title === this.props.title)[0];
-		if (albumObject){
-			console.log(albumObject);
-		}
 
 		return (
 			<div className = {styles.album}>

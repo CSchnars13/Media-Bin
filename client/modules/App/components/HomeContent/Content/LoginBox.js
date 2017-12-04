@@ -26,7 +26,6 @@ export class LoginBox extends Component{
 		const emailRef = this.refs.email.value;
 
 		if (emailRef){
-			console.log(emailRef);
 			this.props.checkCredentials(emailRef);
 			
 		}

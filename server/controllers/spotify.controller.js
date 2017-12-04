@@ -17,7 +17,6 @@ var authOptions = {
 };
 
 export function getAlbumArt(req, res) {
-	console.log("In spotify controller");
 	request.post(authOptions, function(error, response, body) {
 	  if (!error && response.statusCode === 200) {
 	  	var query = req.params.title.replace(/\s/g, "+");

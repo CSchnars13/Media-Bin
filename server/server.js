@@ -3,7 +3,6 @@ import compression from 'compression';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import path from 'path';
-import IntlWrapper from '../client/modules/Intl/IntlWrapper';
 
 // Webpack Requirements
 import webpack from 'webpack';
@@ -33,8 +32,6 @@ import Helmet from 'react-helmet';
 import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import users from './routes/user.routes';
-import dummyData from './dummyData';
-import spotify from './spotify';
 import serverConfig from './config';
 
 // Set native promises as mongoose promise
@@ -46,9 +43,6 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
     console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
     throw error;
   }
-
-  // feed some dummy data in DB.
-  dummyData();
 });
 
 // Apply body Parser and server public assets and routes
@@ -126,9 +120,7 @@ app.use((req, res, next) => {
       .then(() => {
         const initialView = renderToString(
           <Provider store={store}>
-            <IntlWrapper>
               <RouterContext {...renderProps} />
-            </IntlWrapper>
           </Provider>
         );
         const finalState = store.getState();
@@ -146,7 +138,6 @@ app.use((req, res, next) => {
 app.listen(serverConfig.port, (error) => {
   if (!error) {
     console.log(`SoundShare is running on port: ${serverConfig.port}!`); // eslint-disable-line
-    spotify();
   }
 });
 

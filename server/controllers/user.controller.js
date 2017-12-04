@@ -22,8 +22,7 @@ export function getUser(req, res) {
       res.status(500).send(err);
     }
     else{
-      console.log("found user", user.email);
-    res.json({ user });
+      res.json({ user });
   }
   });
 }
