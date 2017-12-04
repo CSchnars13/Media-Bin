@@ -15,7 +15,6 @@ export function addUser(user) {
 }
 
 export function addUserRequest(user) {
-  console.log("Attempting to perform action");
   return (dispatch) => {
     return callApi('users', 'post', {
       user: {
@@ -34,7 +33,6 @@ export function addUserRequest(user) {
 export function getUserRequest(email) {
   return (dispatch) => {
     return callApi(`users/${email}`).then(res => {
-      console.log(res.user.email);
       dispatch(addUser(res.user));
     });
   };
@@ -48,7 +46,6 @@ export function addAlbum(album) {
 }
 
 export function addAlbumRequest(email, album) {
-  console.log("Submit New Album dispatched");
   return (dispatch) => {
     return callApi(`users/${email}`, 'post', {
       album: {

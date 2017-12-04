@@ -12,7 +12,6 @@ export function addAlbumArt(albumTitle, medArt, lgArt){
 }
 
 export function getAlbumArtRequest(albumName){
-  console.log("in action request");
   return (dispatch) => {
     return callApi(`album/${albumName}`).then(res => {
       dispatch(addAlbumArt(albumName, res.medArt, res.lgArt));

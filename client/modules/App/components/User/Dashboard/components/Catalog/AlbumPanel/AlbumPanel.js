@@ -9,7 +9,7 @@ import {getAlbumArtRequest} from '../../../../../../../User/ArtActions'
 
 //import {getUsers} from '../../../../User/UserReducer'\
 
-const loadingPlaceholder = require('./img/loading.png');
+const loadingPlaceholder = require('./loading.png');
 
 export class AlbumPanel extends Component{
 	constructor(props){
@@ -18,9 +18,6 @@ export class AlbumPanel extends Component{
 
 	render(){
 		var artObject = this.props.art.filter((art) => art.title === this.props.title)[0];
-
-		if (artObject)
-			console.log(artObject);
 
 		return (
 			<div className = "AlbumPanel">

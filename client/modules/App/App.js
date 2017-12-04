@@ -9,12 +9,8 @@ import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
 import HomeContent from './components/HomeContent/HomeContent';
-import Footer from './components/Footer/Footer';
 import Dashboard from './components/User/Dashboard/Dashboard';
 
-// Import Actions
-import { toggleAddPost } from './AppActions';
-import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 export class App extends Component {
   constructor(props) {
@@ -39,7 +35,6 @@ export class App extends Component {
   }
 
   setDashboardView(view){
-    console.log(view);
     this.setState({dashboardView: view});
   }
 
@@ -84,13 +79,11 @@ export class App extends Component {
 App.propTypes = {
   children: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
 };
 
 // Retrieve data from store as props
 function mapStateToProps(store) {
   return {
-    intl: store.intl,
   };
 }
 
