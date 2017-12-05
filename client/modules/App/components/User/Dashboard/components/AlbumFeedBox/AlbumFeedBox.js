@@ -41,6 +41,8 @@ export class AlbumFeedBox extends Component{
 
 	submitNewAlbum(){
 		this.setState({albumEntry: false});
+		if (this.state.tempComment === null)
+			tempComment="No Comments";
 		this.props.dispatch(addAlbumRequest(this.props.user[0].email, { title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate, rating: this.state.tempRating, comment: this.state.tempComment}));
 		this.props.dispatch(getAlbumArtRequest(this.state.tempTitle));
 
@@ -58,7 +60,7 @@ export class AlbumFeedBox extends Component{
 			albums = this.props.user[0].albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} rating={item.rating} comment={item.comment}/>);
 		else
 			albums = <div></div>;
-		
+
 		if(this.state.albumEntry)
 			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} cancelEntry={this.cancelEntry} 
 					titleRef = {el => {this.setState({tempTitle: el.target.value}); }} 

@@ -15,6 +15,17 @@ export function getUsers(req, res) {
   });
 }
 
+export function getInactiveUsers(req, res){
+  User.find({active: false}).exec((err, users) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    else{
+      res.json({ users });
+    }
+  });
+}
+
 export function deleteUsers(req, res) {
   User.remove({}).exec((err) => {
     if (err){

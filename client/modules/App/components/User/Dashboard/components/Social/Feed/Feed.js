@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 
 
-//import {getUsers} from '../../../../User/UserReducer'
+import {getUsers} from '../../../../../../../User/UserReducer'
 
 
 export class Feed extends Component{
@@ -14,6 +14,15 @@ export class Feed extends Component{
 	}
 
 	render(){
+		if(this.props.users){
+			console.log(this.props.users.length, this.props.users[0]);
+
+			var inactiveUsers = this.props.users[1];
+
+			console.log(inactiveUsers);
+		}
+
+
 		return (
 			<div className = "Feed">
 				<div className="row">
@@ -34,7 +43,7 @@ export class Feed extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	//user: getUsers(state),
+	   	users: getUsers(state),
 	  };
 	}
 

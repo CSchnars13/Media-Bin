@@ -6,6 +6,8 @@ const router = new Router();
 // Get all Users
 router.route('/users').get(UserController.getUsers);
 
+router.route('/users/inactive').get(UserController.getInactiveUsers);
+
 // Get one user by email
 router.route('/users/:email').get(UserController.getUser);
 

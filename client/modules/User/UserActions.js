@@ -48,6 +48,12 @@ export function fetchUsersRequest() {
   };
 }
 
+export function fetchInactiveUsersRequest() {
+  return (dispatch) => {
+    return callApi('users/inactive').then(res => dispatch(addUser(res.users)));
+  };
+}
+
 export function getUserRequest(email) {
   return (dispatch) => {
     return callApi(`users/${email}`).then(res => {

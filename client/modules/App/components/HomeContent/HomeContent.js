@@ -6,7 +6,7 @@ import LoginBox from './Content/LoginBox';
 import SignUpBox from './Content/SignUpBox';
 import InfoBox from './Content/InfoBox';
 
-import { addUserRequest, fetchUsersRequest, getUserRequest, deleteUsersRequest } from '../../../User/UserActions';
+import { addUserRequest, fetchInactiveUsersRequest, getUserRequest, deleteUsersRequest } from '../../../User/UserActions';
 import {getUsers} from '../../../User/UserReducer'
 
 
@@ -21,11 +21,12 @@ export class HomeContent extends Component{
 	};
 
 	handleFetchUsers = () => {
-		this.props.dispatch(fetchUsersRequest());
+		this.props.dispatch(fetchInactiveUsersRequest());
 	}
 
 	handleLoginAttempt = (email) => {
 		this.props.dispatch(getUserRequest(email));
+		this.props.dispatch(fetchInactiveUsersRequest());
 	};
 
 	handleDeleteUsers = () => {

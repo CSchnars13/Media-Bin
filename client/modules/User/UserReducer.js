@@ -7,7 +7,7 @@ const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER :
       return {
-        data: [action.user, ...state.data],
+        data: [...state.data, action.user],
       };
 
     case ADD_USERS :
