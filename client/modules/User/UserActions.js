@@ -62,6 +62,14 @@ export function deleteUsersRequest() {
   };
 }
 
+export function signOutUserRequest(email) {
+  return (dispatch) => {
+    return callApi(`signout/${email}`, 'post').then(res => {
+      dispatch(clearUsers());
+    });
+  };
+}
+
 export function addAlbum(album) {
   return {
     type: ADD_ALBUM,
