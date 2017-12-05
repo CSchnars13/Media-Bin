@@ -15,6 +15,16 @@ export function getUsers(req, res) {
   });
 }
 
+export function deleteUsers(req, res) {
+  User.remove({}).exec((err) => {
+    if (err){
+      console.log(err);
+      res.status(500).send(err);
+    }
+    console.log("users deleted");
+  });
+}
+
 export function getUser(req, res) {
   User.findOne({ email: req.params.email }).exec((err, user) => {
     if (err) {
@@ -28,11 +38,15 @@ export function getUser(req, res) {
 }
 
 export function addUser(req, res) {
-  if (!req.body.user.email || !req.body.user.password || !req.body.user.role) {
+  if (!req.body.user.email || !req.body.user.password || !req.body.user.name) {
     res.status(403).end();
   }
 
-  const newUser = new User(req.body.user);
+  var name = req.body.user.name;
+  var email = req.body.user.email;
+  var password = req.body.user.password;
+
+  const newUser = new User({name: name, email: email, password: password, active: true, albums: [], subscribed: []});
 
   newUser.save((err, saved) => {
     if (err) {

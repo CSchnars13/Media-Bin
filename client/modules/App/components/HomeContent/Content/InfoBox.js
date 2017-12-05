@@ -18,6 +18,9 @@ export class InfoBox extends Component{
 				<p> Create a music profile that your friends follow to stay updated with your latest music tastes </p>
 				<h4> Discover </h4>
 				<p> Follow your friends and explore genres, artists, and albums you've never encountered before </p>
+
+				<button type="button" className="btn btn-default" onClick={this.props.fetchUsers}>Fetch Users</button>
+				<button type="button" className="btn btn-default" onClick={this.props.deleteUsers}>DELETE USERS</button>
 			</div>
 		)
 	}

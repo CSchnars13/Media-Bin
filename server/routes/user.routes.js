@@ -15,6 +15,10 @@ router.route('/users').post(UserController.addUser);
 //Add album to user database
 router.route('/users/:email').post(UserController.addAlbum);
 
+router.route('/users').delete(UserController.deleteUsers);
+
 router.route('/album/:title').get(SpotifyController.getAlbumArt);
+
+
 
 export default router;

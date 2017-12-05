@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import styles from './HomeContent.css';
@@ -7,7 +6,7 @@ import LoginBox from './Content/LoginBox';
 import SignUpBox from './Content/SignUpBox';
 import InfoBox from './Content/InfoBox';
 
-import { addUserRequest, getUserRequest } from '../../../User/UserActions';
+import { addUserRequest, fetchUsersRequest, getUserRequest, deleteUsersRequest } from '../../../User/UserActions';
 import {getUsers} from '../../../User/UserReducer'
 
 
@@ -21,9 +20,17 @@ export class HomeContent extends Component{
     	this.props.dispatch(addUserRequest({ email, password, role }));
 	};
 
+	handleFetchUsers = () => {
+		this.props.dispatch(fetchUsersRequest());
+	}
+
 	handleLoginAttempt = (email) => {
 		this.props.dispatch(getUserRequest(email));
 	};
+
+	handleDeleteUsers = () => {
+		this.props.dispatch(deleteUsersRequest());
+	}
 
 
 
@@ -39,7 +46,7 @@ export class HomeContent extends Component{
 			<div className = {styles.content}>
 				<div className="row">
 					<div className="col">
-						<InfoBox />
+						<InfoBox fetchUsers={this.handleFetchUsers} deleteUsers={this.handleDeleteUsers} />
 					</div>
 					<div className={styles.divider}></div>
 					<div className="col">
