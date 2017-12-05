@@ -58,6 +58,18 @@ export function addUser(req, res) {
   });
 }
 
+export function signOutUser(req, res) {
+  User.findOneAndUpdate({ email: req.params.email }, {$set:{active:false}}, {new: true}).exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      res.json({ user });
+  	}
+  });
+}
+
 export function addAlbum(req, res) {
   if (!req.body.album.title || !req.body.album.artist || !req.body.album.date || !req.body.album.rating || !req.body.album.comment ) {
     res.status(403).end();

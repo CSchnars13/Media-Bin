@@ -11,6 +11,8 @@ import Header from './components/Header/Header';
 import HomeContent from './components/HomeContent/HomeContent';
 import Dashboard from './components/User/Dashboard/Dashboard';
 
+import {signOutUserRequest} from '../User/UserActions'
+import {getUsers} from '../User/UserReducer'
 
 export class App extends Component {
   constructor(props) {
@@ -27,6 +29,9 @@ export class App extends Component {
   }
 
   toggleLogIn() {
+    if (this.state.loggedIn){
+      this.props.dispatch(signOutUserRequest(this.props.users[0].email));
+    }
     this.setState({loggedIn: !this.state.loggedIn});
   }
 
@@ -84,6 +89,7 @@ App.propTypes = {
 // Retrieve data from store as props
 function mapStateToProps(store) {
   return {
+    users: getUsers(store),
   };
 }
 
