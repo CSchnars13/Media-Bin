@@ -22,8 +22,14 @@ export class Social extends Component{
 		if (this.state.discoverToggle)
 			view = 
 				<div>
-					<Feed />
-					<Discover />;
+					<div className="row">
+						<div className="col">
+							<Feed />
+						</div>
+						<div className="col">
+							<Discover />
+						</div>
+					</div>
 				</div>
 		else
 			view = <Feed />;

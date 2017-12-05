@@ -18,13 +18,13 @@ export class Feed extends Component{
 			<div className = "Feed">
 				<div className="row">
 					<div className="col">
-						<h3> User </h3>
-						<h3> Album </h3>
-						<h3> Rating </h3>
-						<h3> Comment </h3>
+						<h6> User </h6>
+						<h6> Album </h6>
+						<h6> Rating </h6>
+						<h6> Comment </h6>
 					</div>
 					<div className="col">
-						<h1> IMG </h1>
+						<h4> IMG Placeholder</h4>
 					</div>
 				</div>
 			</div>

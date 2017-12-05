@@ -1,12 +1,21 @@
 import callApi from '../../util/apiCaller';
 
 // Export Constants
+export const CLEAR_USERS = 'CLEAR_USERS';
 export const ADD_USER = 'ADD_USER';
+export const ADD_USERS = 'ADD_USERS';
 export const GET_USER = 'GET_USER';
 export const ADD_ALBUM = 'ADD_ALBUM';
 
 
 // Export Actions
+
+export function clearUsers() {
+  return {
+    type: CLEAR_USERS,
+  };
+}
+
 export function addUser(user) {
   return {
     type: ADD_USER,
@@ -20,21 +29,36 @@ export function addUserRequest(user) {
       user: {
         email: user.email,
         password: user.password,
-        role: user.role,
-        albums: [],
-        following: [],
+        name: user.name,
       },
     }).then(res => dispatch(addUser(res.user)));
   };
 }
-/*
 
-*/
+export function addUsers(users) {
+  return {
+    type: ADD_USERS,
+    users,
+  };
+}
+
+export function fetchUsersRequest() {
+  return (dispatch) => {
+    return callApi('users').then(res => dispatch(addUser(res.users)));
+  };
+}
+
 export function getUserRequest(email) {
   return (dispatch) => {
     return callApi(`users/${email}`).then(res => {
       dispatch(addUser(res.user));
     });
+  };
+}
+
+export function deleteUsersRequest() {
+  return (dispatch) => {
+    return callApi('users', 'delete').then(res => dispatch(clearUsers()));
   };
 }
 
@@ -55,9 +79,7 @@ export function addAlbumRequest(email, album) {
         rating: album.rating,
         comment: album.comment,
       }
-    }
-
-      ).then(res => {
+    }).then(res => {
       dispatch(addAlbum(res.album));
     });
   };
