@@ -27,9 +27,9 @@ export function addUserRequest(user) {
   return (dispatch) => {
     return callApi('users', 'post', {
       user: {
+        name: user.name,
         email: user.email,
         password: user.password,
-        name: user.name,
       },
     }).then(res => dispatch(addUser(res.user)));
   };

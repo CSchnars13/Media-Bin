@@ -39,7 +39,7 @@ export class LoginBox extends Component{
 			else{
 				this.setState({error: {show: true, msg: this.state.error.msg}});
 			}
-		}.bind(this), 1000);
+		}.bind(this), 500);
 
 		
 		

@@ -16,8 +16,8 @@ export class HomeContent extends Component{
 		super(props);
 	}
 
-	handleAddUser = (email, password, role) => {
-    	this.props.dispatch(addUserRequest({ email, password, role }));
+	handleAddUser = (name, email, password) => {
+    	this.props.dispatch(addUserRequest({ name, email, password}));
 	};
 
 	handleFetchUsers = () => {
@@ -38,7 +38,7 @@ export class HomeContent extends Component{
 	render(){
 		var userLogin;
 		if (this.props.signUp)
-			userLogin = <SignUpBox toggleSignUp={this.props.toggleSignUp} addUser = {this.handleAddUser} />;
+			userLogin = <SignUpBox loginHandler={this.props.loginHandler} toggleSignUp={this.props.toggleSignUp} addUser = {this.handleAddUser} />;
 		else
 			userLogin = <LoginBox loginHandler={this.props.loginHandler} toggleSignUp={this.props.toggleSignUp} checkCredentials = {this.handleLoginAttempt} />;
 

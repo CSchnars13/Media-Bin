@@ -26,7 +26,7 @@ export function deleteUsers(req, res) {
 }
 
 export function getUser(req, res) {
-  User.findOne({ email: req.params.email }).exec((err, user) => {
+  User.findOneAndUpdate({ email: req.params.email }, {$set:{active:true}}, {new: true}).exec((err, user) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -38,8 +38,8 @@ export function getUser(req, res) {
 }
 
 export function addUser(req, res) {
-  if (!req.body.user.email || !req.body.user.password || !req.body.user.name) {
-    res.status(403).end();
+  if (!req.body.user.name || !req.body.user.email || !req.body.user.password) {
+    return res.status(403).end();
   }
 
   var name = req.body.user.name;

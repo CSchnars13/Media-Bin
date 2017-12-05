@@ -18,8 +18,8 @@ export class AlbumFeedBox extends Component{
 						tempArtist: null,
 						tempDate: null,
 						tempRating: null,
-						tempComment: null
-
+						tempComment: null,
+						isMounted: false
 					};
 
 		this.createAlbumForm = this.createAlbumForm.bind(this);
@@ -29,6 +29,7 @@ export class AlbumFeedBox extends Component{
 	}
 
 	componentDidMount(){
+		this.setState({isMounted: true});
 		for (var i = 0; i < this.props.user[0].albums.length; i++){
 			this.props.dispatch(getAlbumArtRequest(this.props.user[0].albums[i].title));
 		}
@@ -52,8 +53,12 @@ export class AlbumFeedBox extends Component{
 	render(){
 
 		var view;
-		var albums = this.props.user[0].albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} rating={item.rating} comment={item.comment}/>);
-
+		var albums;
+		if(this.state.isMounted)
+			albums = this.props.user[0].albums.map((item,i) => <Album key={i} title={item.title} artist={item.artist} date={item.date} rating={item.rating} comment={item.comment}/>);
+		else
+			albums = <div></div>;
+		
 		if(this.state.albumEntry)
 			view = <BlankAlbum submitNewAlbum={this.submitNewAlbum} cancelEntry={this.cancelEntry} 
 					titleRef = {el => {this.setState({tempTitle: el.target.value}); }} 
