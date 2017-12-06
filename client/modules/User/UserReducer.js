@@ -1,4 +1,4 @@
-import { ADD_USER, ADD_USERS, CLEAR_USERS, ADD_ALBUM, ADD_ALBUM_ART} from './UserActions';
+import { ADD_USER, ADD_USERS, CLEAR_USERS, ADD_ALBUM, ADD_ALBUM_ART, ADD_FOLLOW} from './UserActions';
 
 // Initial State
 const initialState = { data: [] };
@@ -23,6 +23,15 @@ const UserReducer = (state = initialState, action) => {
     case ADD_ALBUM:
       if (state.data.length > 0){
         state.data[0].albums = [action.album, ...state.data[0].albums];
+
+      }
+      return {
+        data: [...state.data],
+      };
+
+    case ADD_FOLLOW:
+      if (state.data.length > 0){
+        state.data[0].subscribed = [action.subscribed, ...state.data[0].subscribed];
 
       }
       return {

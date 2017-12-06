@@ -6,6 +6,8 @@ export const ADD_USER = 'ADD_USER';
 export const ADD_USERS = 'ADD_USERS';
 export const GET_USER = 'GET_USER';
 export const ADD_ALBUM = 'ADD_ALBUM';
+export const ADD_FOLLOW = 'ADD_FOLLOW';
+
 
 
 // Export Actions
@@ -95,6 +97,25 @@ export function addAlbumRequest(email, album) {
       }
     }).then(res => {
       dispatch(addAlbum(res.album));
+    });
+  };
+}
+
+export function addFollow(subscribed) {
+  return {
+    type: ADD_FOLLOW,
+          subscribed,
+  };
+}
+
+export function addFollowRequest(email, subscribedID) {
+  return (dispatch) => {
+    return callApi(`subscribe/${email}`, 'post', {
+      subscriber: {
+        id: subscribedID,
+      }
+    }).then(res => {
+      dispatch(addFollow(res.subscribed));
     });
   };
 }

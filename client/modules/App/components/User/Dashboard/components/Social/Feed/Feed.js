@@ -14,27 +14,39 @@ export class Feed extends Component{
 	}
 
 	render(){
+		var view = [];
+		var albums;
 		if(this.props.users){
-			console.log(this.props.users.length, this.props.users[0]);
-
-			var inactiveUsers = this.props.users[1];
-
-			console.log(inactiveUsers);
-		}
-
-
-		return (
-			<div className = "Feed">
+			for(var i=0; i<this.props.users[0].subscribed.length; i++){
+				var currSub = this.props.users[0].subscribed[i];
+				albums = currSub.albums.map((item, i) =>
+				<div> 
 				<div className="row">
 					<div className="col">
-						<h6> User </h6>
-						<h6> Album </h6>
-						<h6> Rating </h6>
-						<h6> Comment </h6>
+						<h3> {currSub.name} </h3>
+						<h4> {item.title} </h4>
+						<h4> {item.artist} </h4>
+						<h6> Their Rating: {item.rating} </h6>
+						<h6> Their Comment: {item.comment} </h6>
 					</div>
 					<div className="col">
 						<h4> IMG Placeholder</h4>
 					</div>
+				</div>
+				<hr />
+				</div>);
+				view.push(albums);
+			}
+		}
+
+
+		return (
+
+			<div className = "Feed">
+				<h2 className="text-center"> Friend Activity </h2>
+				<hr />
+				<div>
+					{view}
 				</div>
 			</div>
 		)

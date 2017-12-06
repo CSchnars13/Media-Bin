@@ -5,7 +5,7 @@ import styles from './AlbumFeedBox.css';
 import Album from './Album/Album';
 import BlankAlbum from './BlankAlbum/BlankAlbum';
 
-import { addAlbumRequest } from '../../../../../../User/UserActions';
+import { addAlbumRequest, fetchInactiveUsersRequest } from '../../../../../../User/UserActions';
 import { getAlbumArtRequest } from '../../../../../../User/ArtActions';
 import {getUsers} from '../../../../../../User/UserReducer'
 
@@ -30,8 +30,10 @@ export class AlbumFeedBox extends Component{
 
 	componentDidMount(){
 		this.setState({isMounted: true});
+		this.props.dispatch(fetchInactiveUsersRequest());
 		for (var i = 0; i < this.props.user[0].albums.length; i++){
 			this.props.dispatch(getAlbumArtRequest(this.props.user[0].albums[i].title));
+		
 		}
 	}
 

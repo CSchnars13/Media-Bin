@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 //import styles from './Catalog.css';
 import Feed from './Feed/Feed';
 import Discover from './Discover/Discover';
-
-//import {getUsers} from '../../../../User/UserReducer'
+import {addFollowRequest} from '../../../../../../User/UserActions'
+import {getUsers} from '../../../../../../User/UserReducer'
 
 
 export class Social extends Component{
@@ -15,7 +15,13 @@ export class Social extends Component{
 		this.state = {
 			discoverToggle: true
 		}
+
+
 	}
+
+	handleAddFollow = (email, id) => {
+		this.props.dispatch(addFollowRequest(email,id));
+	};
 
 	render(){
 		var view;
@@ -27,7 +33,7 @@ export class Social extends Component{
 							<Feed />
 						</div>
 						<div className="col">
-							<Discover />
+							<Discover handleFollow={this.handleAddFollow} />
 						</div>
 					</div>
 				</div>
@@ -45,7 +51,7 @@ export class Social extends Component{
 
 function mapStateToProps(state) {
 	return {
-	   	//user: getUsers(state),
+	   	user: getUsers(state),
 	  };
 	}
 

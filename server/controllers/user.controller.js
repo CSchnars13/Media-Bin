@@ -37,7 +37,7 @@ export function deleteUsers(req, res) {
 }
 
 export function getUser(req, res) {
-  User.findOneAndUpdate({ email: req.params.email }, {$set:{active:true}}, {new: true}).exec((err, user) => {
+  User.findOneAndUpdate({ email: req.params.email }, {$set:{active:true}}, {new: true}).populate("subscribed").exec((err, user) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -103,4 +103,39 @@ export function addAlbum(req, res) {
     }
   });
 }
+
+export function addFollow(req, res) {
+
+  const subscribedID = req.body.subscriber.id;
+
+    User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      user.subscribed = [subscribedID, ...user.subscribed];
+      user.save(function(err){
+        if (err)
+          return res.status(500).send(err);
+      });
+    }
+          console.log(user.subscribed);
+  });
+
+  User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      console.log(user.subscribed);
+      res.json({ subscribed: user.subscribed });
+    }
+  });
+    
+    
+
+}
+
 

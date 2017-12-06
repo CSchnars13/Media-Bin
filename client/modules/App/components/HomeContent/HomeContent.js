@@ -26,7 +26,6 @@ export class HomeContent extends Component{
 
 	handleLoginAttempt = (email) => {
 		this.props.dispatch(getUserRequest(email));
-		this.props.dispatch(fetchInactiveUsersRequest());
 	};
 
 	handleDeleteUsers = () => {
