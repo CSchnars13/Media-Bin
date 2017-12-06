@@ -25,6 +25,7 @@ export class BlankAlbum extends Component{
 					<div className="form-group">
 					    <label htmlFor="ratingForm">Rating</label>
 					    <select className="form-control" id="ratingForm" onChange={this.props.ratingRef}>
+					      <option selected="selected"></option>
 					      <option>5</option>
 					      <option>4</option>
 					      <option>3</option>

@@ -29,10 +29,12 @@ export class App extends Component {
   }
 
   toggleLogIn() {
+    this.setDashboardView("dashboard");
     if (this.state.loggedIn){
       this.props.dispatch(signOutUserRequest(this.props.users[0].email));
     }
     this.setState({loggedIn: !this.state.loggedIn});
+
   }
 
   toggleSignUp(){

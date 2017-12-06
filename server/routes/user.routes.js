@@ -6,6 +6,8 @@ const router = new Router();
 // Get all Users
 router.route('/users').get(UserController.getUsers);
 
+router.route('/users/inactive').get(UserController.getInactiveUsers);
+
 // Get one user by email
 router.route('/users/:email').get(UserController.getUser);
 
@@ -19,7 +21,11 @@ router.route('/users').delete(UserController.deleteUsers);
 
 router.route('/signout/:email').post(UserController.signOutUser)
 
+router.route('/subscribe/:email').post(UserController.addFollow);
+
 router.route('/album/:title').get(SpotifyController.getAlbumArt);
+
+
 
 
 

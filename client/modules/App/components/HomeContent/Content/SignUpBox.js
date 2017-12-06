@@ -10,15 +10,21 @@ export class SignUpBox extends Component{
 	}
 
 	addUser = () => {
+		const nameRef = this.refs.name.value;
 		const emailRef = this.refs.email.value;
 		const passwordRef = this.refs.password.value;
 
 		console.log(emailRef, passwordRef);
 
-		if (emailRef && passwordRef){
-			this.props.addUser(emailRef, passwordRef, 'basic');
-			console.log("New account added with email: " + emailRef + " and password: " + passwordRef);
+		if (nameRef && emailRef && passwordRef){
+			this.props.addUser(nameRef, emailRef, passwordRef);
+			console.log("New account added with name:" + nameRef + ", email: " + emailRef + " and password: " + passwordRef);
+			setTimeout(function(){
+				this.props.loginHandler();
+			}.bind(this), 500);
 		}
+
+
 	}
 
 	render(){
@@ -26,6 +32,10 @@ export class SignUpBox extends Component{
 			<div className = {styles.box}>
 			<h4 className="text-center">Create Account</h4>
 				<form>
+					<div className = "form-group">
+						<label htmlFor="name-form">Name</label>
+	    				<input type="email" className="form-control" id="name-form" placeholder="Name" ref="name"></input>
+					</div>
 					<div className = "form-group">
 						<label htmlFor="email-form">Email Address</label>
 	    				<input type="email" className="form-control" id="email-form" placeholder="Email" ref="email"></input>

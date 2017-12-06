@@ -15,6 +15,17 @@ export function getUsers(req, res) {
   });
 }
 
+export function getInactiveUsers(req, res){
+  User.find({active: false}).exec((err, users) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    else{
+      res.json({ users });
+    }
+  });
+}
+
 export function deleteUsers(req, res) {
   User.remove({}).exec((err) => {
     if (err){
@@ -26,7 +37,7 @@ export function deleteUsers(req, res) {
 }
 
 export function getUser(req, res) {
-  User.findOne({ email: req.params.email }).exec((err, user) => {
+  User.findOneAndUpdate({ email: req.params.email }, {$set:{active:true}}, {new: true}).populate("subscribed").exec((err, user) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -38,8 +49,8 @@ export function getUser(req, res) {
 }
 
 export function addUser(req, res) {
-  if (!req.body.user.email || !req.body.user.password || !req.body.user.name) {
-    res.status(403).end();
+  if (!req.body.user.name || !req.body.user.email || !req.body.user.password) {
+    return res.status(403).end();
   }
 
   var name = req.body.user.name;
@@ -92,4 +103,39 @@ export function addAlbum(req, res) {
     }
   });
 }
+
+export function addFollow(req, res) {
+
+  const subscribedID = req.body.subscriber.id;
+
+    User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      user.subscribed = [subscribedID, ...user.subscribed];
+      user.save(function(err){
+        if (err)
+          return res.status(500).send(err);
+      });
+    }
+          console.log(user.subscribed);
+  });
+
+  User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      console.log(user.subscribed);
+      res.json({ subscribed: user.subscribed });
+    }
+  });
+    
+    
+
+}
+
 

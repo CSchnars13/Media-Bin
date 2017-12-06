@@ -6,6 +6,8 @@ export const ADD_USER = 'ADD_USER';
 export const ADD_USERS = 'ADD_USERS';
 export const GET_USER = 'GET_USER';
 export const ADD_ALBUM = 'ADD_ALBUM';
+export const ADD_FOLLOW = 'ADD_FOLLOW';
+
 
 
 // Export Actions
@@ -27,9 +29,9 @@ export function addUserRequest(user) {
   return (dispatch) => {
     return callApi('users', 'post', {
       user: {
+        name: user.name,
         email: user.email,
         password: user.password,
-        name: user.name,
       },
     }).then(res => dispatch(addUser(res.user)));
   };
@@ -45,6 +47,12 @@ export function addUsers(users) {
 export function fetchUsersRequest() {
   return (dispatch) => {
     return callApi('users').then(res => dispatch(addUser(res.users)));
+  };
+}
+
+export function fetchInactiveUsersRequest() {
+  return (dispatch) => {
+    return callApi('users/inactive').then(res => dispatch(addUser(res.users)));
   };
 }
 
@@ -89,6 +97,25 @@ export function addAlbumRequest(email, album) {
       }
     }).then(res => {
       dispatch(addAlbum(res.album));
+    });
+  };
+}
+
+export function addFollow(subscribed) {
+  return {
+    type: ADD_FOLLOW,
+          subscribed,
+  };
+}
+
+export function addFollowRequest(email, subscribedID) {
+  return (dispatch) => {
+    return callApi(`subscribe/${email}`, 'post', {
+      subscriber: {
+        id: subscribedID,
+      }
+    }).then(res => {
+      dispatch(addFollow(res.subscribed));
     });
   };
 }
