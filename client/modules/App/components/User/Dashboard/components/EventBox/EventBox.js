@@ -1,30 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import styles from './EventBox.css';
 import Event from './Event/Event';
 import BlankEvent from './BlankEvent/BlankEvent';
 
+import { addEventRequest} from '../../../../../../User/UserActions';
+import {getUsers} from '../../../../../../User/UserReducer'
+
 export class EventBox extends Component{
 	constructor(props){
 		super(props);
 
-		this.state={eventEntry: false,
-					events: [
-						{name: "RARE Music Festival",
-						location: "Orlando, FL",
-						date: "2017"},
-						{name: "Lil Wayne at UF",
-						location: "Gainesville, FL",
-						date: "2017"},
-						{name: "Okeechobee Music Festival",
-						location: "Okeechobee, FL",
-						date: "2016"},
-						{name: "Bonnaroo Music Festival",
-						location: "Manchester, TN",
-						date: "2015"},
-						],
-					
+		this.state={eventEntry: false,					
 						tempName: null,
 						tempLocation: null,
 						tempDate: null
@@ -42,7 +30,8 @@ export class EventBox extends Component{
 	}
 
 	submitNewEvent(){
-		this.setState({eventEntry: false, events: [...this.state.events, {name: this.state.tempName, location: this.state.tempLocation, date: this.state.tempDate}]});
+		this.setState({eventEntry: false});
+		this.props.dispatch(addEventRequest(this.props.user[0].email, { name: this.state.tempName, location: this.state.tempLocation, date: this.state.tempDate}));
 
 	}
 
@@ -53,7 +42,7 @@ export class EventBox extends Component{
 	render(){
 
 		var view;
-		var events = this.state.events.map((item,i) => <Event key={i} name={item.name} location={item.location} date={item.date} />);
+		var events = this.props.user[0].events.map((item,i) => <Event key={i} name={item.name} location={item.location} date={item.date} />);
 
 		if(this.state.eventEntry)
 			view = <BlankEvent submitNewEvent={this.submitNewEvent} cancelEntry={this.cancelEntry} nameRef = {el => {this.setState({tempName: el.target.value}); }} 
@@ -81,4 +70,11 @@ export class EventBox extends Component{
 	}
 }
 
-export default EventBox;
+
+function mapStateToProps(state) {
+	return {
+	   	user: getUsers(state),
+	  };
+	}
+
+export default connect(mapStateToProps)(EventBox);
