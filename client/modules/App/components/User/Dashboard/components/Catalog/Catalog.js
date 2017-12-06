@@ -59,16 +59,16 @@ export class Catalog extends Component{
 				<div>
 					 <div className = "row">
 						<div className = "col">
-							<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={userAlbums[0+factor].dateLogged}/>
+							<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={new Date(userAlbums[0+factor].dateLogged).toDateString()}/>
 						</div>
 						<div className = "col">
-							<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={userAlbums[1+factor].dateLogged}/>
+							<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={new Date(userAlbums[1+factor].dateLogged).toDateString()}/>
 						</div>
 						<div className = "col">
-							<AlbumPanel title={userAlbums[2+factor].title} artist={userAlbums[2+factor].artist} date={userAlbums[2+factor].date} rating={userAlbums[2+factor].rating} dateLogged={userAlbums[2+factor].dateLogged}/>
+							<AlbumPanel title={userAlbums[2+factor].title} artist={userAlbums[2+factor].artist} date={userAlbums[2+factor].date} rating={userAlbums[2+factor].rating} dateLogged={new Date(userAlbums[2+factor].dateLogged).toDateString()}/>
 						</div>
 						<div className = "col">
-							<AlbumPanel title={userAlbums[3+factor].title} artist={userAlbums[3+factor].artist} date={userAlbums[3+factor].date} rating={userAlbums[3+factor].rating} dateLogged={userAlbums[3+factor].dateLogged}/>
+							<AlbumPanel title={userAlbums[3+factor].title} artist={userAlbums[3+factor].artist} date={userAlbums[3+factor].date} rating={userAlbums[3+factor].rating} dateLogged={new Date(userAlbums[3+factor].dateLogged).toDateString()}/>
 						</div>										
 					</div>
 				</div>;
@@ -83,7 +83,7 @@ export class Catalog extends Component{
 					<div>
 						 <div className = "row">
 							<div className = "col">
-								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={userAlbums[0+factor].dateLogged}/>
+								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={new Date(userAlbums[0+factor].dateLogged).toDateString()}/>
 							</div>
 							<div className = "col">
 							</div>
@@ -104,10 +104,10 @@ export class Catalog extends Component{
 							<div className = "col">
 							</div>
 							<div className = "col">
-								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={userAlbums[0+factor].dateLogged}/>						
+								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={new Date(userAlbums[0+factor].dateLogged).toDateString()}/>						
 							</div>
 							<div className = "col">
-								<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={userAlbums[1+factor].dateLogged}/>
+								<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={new Date(userAlbums[1+factor].dateLogged).toDateString()}/>
 							</div>
 							<div className = "col">
 							</div>										
@@ -121,13 +121,13 @@ export class Catalog extends Component{
 					<div>
 						 <div className = "row">
 							<div className = "col">
-								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={userAlbums[0+factor].dateLogged}/>	
+								<AlbumPanel title={userAlbums[0+factor].title} artist={userAlbums[0+factor].artist} date={userAlbums[0+factor].date} rating={userAlbums[0+factor].rating} dateLogged={new Date(userAlbums[0+factor].dateLogged).toDateString()}/>	
 							</div>
 							<div className = "col">
-								<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={userAlbums[1+factor].dateLogged}/>						
+								<AlbumPanel title={userAlbums[1+factor].title} artist={userAlbums[1+factor].artist} date={userAlbums[1+factor].date} rating={userAlbums[1+factor].rating} dateLogged={new Date(userAlbums[1+factor].dateLogged).toDateString()}/>						
 							</div>
 							<div className = "col">
-								<AlbumPanel title={userAlbums[2+factor].title} artist={userAlbums[2+factor].artist} date={userAlbums[2+factor].date} rating={userAlbums[2+factor].rating} dateLogged={userAlbums[2+factor].dateLogged}/>
+								<AlbumPanel title={userAlbums[2+factor].title} artist={userAlbums[2+factor].artist} date={userAlbums[2+factor].date} rating={userAlbums[2+factor].rating} dateLogged={new Date(userAlbums[2+factor].dateLogged).toDateString()}/>
 							</div>
 							<div className = "col">
 							</div>										
