@@ -57,7 +57,7 @@ export function addUser(req, res) {
   var email = req.body.user.email;
   var password = req.body.user.password;
 
-  const newUser = new User({name: name, email: email, password: password, active: true, albums: [], subscribed: []});
+  const newUser = new User({name: name, email: email, password: password, active: true, albums: [], events: [], subscribed: []});
 
   newUser.save((err, saved) => {
     if (err) {
@@ -134,8 +134,29 @@ export function addFollow(req, res) {
     }
   });
     
-    
+}
 
+export function addEvent(req, res) {
+  if (!req.body.event.name || !req.body.event.location || !req.body.event.date ) {
+    return res.status(403).end();
+  }
+
+  const newEvent = req.body.event;
+
+    User.findOne({ email: req.params.email }).exec((err, user) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else{
+      user.events = [newEvent, ...user.events];
+      user.save(function(err){
+        if (err)
+          return res.status(500).send(err);
+      });
+      res.json({ event: user.events[0] });
+    }
+  });
 }
 
 

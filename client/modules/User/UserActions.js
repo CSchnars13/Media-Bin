@@ -7,6 +7,7 @@ export const ADD_USERS = 'ADD_USERS';
 export const GET_USER = 'GET_USER';
 export const ADD_ALBUM = 'ADD_ALBUM';
 export const ADD_FOLLOW = 'ADD_FOLLOW';
+export const ADD_EVENT = 'ADD_EVENT';
 
 
 
@@ -97,6 +98,27 @@ export function addAlbumRequest(email, album) {
       }
     }).then(res => {
       dispatch(addAlbum(res.album));
+    });
+  };
+}
+
+export function addEvent(event) {
+  return {
+    type: ADD_EVENT,
+          event,
+  };
+}
+
+export function addEventRequest(email, event) {
+  return (dispatch) => {
+    return callApi(`events/${email}`, 'post', {
+      event: {
+        name: event.name,
+        location: event.location,
+        date: event.date,
+      }
+    }).then(res => {
+      dispatch(addEvent(res.event));
     });
   };
 }

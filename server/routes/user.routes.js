@@ -19,11 +19,15 @@ router.route('/users/:email').post(UserController.addAlbum);
 
 router.route('/users').delete(UserController.deleteUsers);
 
-router.route('/signout/:email').post(UserController.signOutUser)
+router.route('/signout/:email').post(UserController.signOutUser);
+
+router.route('/events/:email').post(UserController.addEvent);
 
 router.route('/subscribe/:email').post(UserController.addFollow);
 
 router.route('/album/:title').get(SpotifyController.getAlbumArt);
+
+
 
 
 

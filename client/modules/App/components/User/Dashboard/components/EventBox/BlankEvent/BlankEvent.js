@@ -22,19 +22,6 @@ export class BlankEvent extends Component{
 						<label htmlFor="password-form">Event Date</label>
 	    				<input type="text" className="form-control" id="password-confirm" placeholder="Enter Event Date" onChange={this.props.dateRef}></input>
 					</div>
-					<div className="form-group">
-					    <label htmlFor="ratingForm">Rating</label>
-					    <select className="form-control" id="ratingForm">
-					      <option>5</option>
-					      <option>4</option>
-					      <option>3</option>
-					      <option>2</option>
-					      <option>1</option>
-					    </select>
-					</div>
-					<div className="form-group">
-					    <textarea className="form-control" id="Comments" placeholder="Comments"></textarea>
-					 </div>
 				</form>
 				<div className="text-center">
 					<div className="btn-group" role="group">
