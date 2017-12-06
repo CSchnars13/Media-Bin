@@ -108,7 +108,7 @@ export function addFollow(req, res) {
 
   const subscribedID = req.body.subscriber.id;
 
-    User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
+    User.findOne({ email: req.params.email }).exec((err, user) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -120,18 +120,17 @@ export function addFollow(req, res) {
           return res.status(500).send(err);
       });
     }
-          console.log(user.subscribed);
-  });
-
-  User.findOne({ email: req.params.email }).populate("subscribed").exec((err, user) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    }
-    else{
-      console.log(user.subscribed);
-      res.json({ subscribed: user.subscribed });
-    }
+    
+    User.find({ _id: subscribedID }).exec((err, user2) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+      else{
+        console.log(user2);
+        res.json({ subscribed: user2});
+      }
+    });
   });
     
 }

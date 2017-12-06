@@ -18,7 +18,7 @@ export class AlbumFeedBox extends Component{
 						tempArtist: null,
 						tempDate: null,
 						tempRating: null,
-						tempComment: null,
+						tempComment: " ",
 						isMounted: false
 					};
 
@@ -43,8 +43,8 @@ export class AlbumFeedBox extends Component{
 
 	submitNewAlbum(){
 		this.setState({albumEntry: false});
-		if (this.state.tempComment === null)
-			tempComment="No Comments";
+		if (this.state.tempComment === " ")
+			this.setState({tempComment: "No Comments"});
 		this.props.dispatch(addAlbumRequest(this.props.user[0].email, { title: this.state.tempTitle, artist: this.state.tempArtist, date: this.state.tempDate, rating: this.state.tempRating, comment: this.state.tempComment}));
 		this.props.dispatch(getAlbumArtRequest(this.state.tempTitle));
 
@@ -69,7 +69,7 @@ export class AlbumFeedBox extends Component{
 					artistRef = {el => {this.setState({tempArtist: el.target.value}); }} 
 					dateRef = {el => {this.setState({tempDate: el.target.value}); }} 
 					ratingRef = {el => {this.setState({tempRating: el.target.value}); }}
-					commentRef = {el => {this.setState({tempComment: el.target.value}); }} />;
+					commentRef = {el => {if(el.target.value) this.setState({tempComment: el.target.value}); }} />;
 		else
 			view =
 			<div>

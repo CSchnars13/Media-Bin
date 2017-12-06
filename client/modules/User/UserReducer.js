@@ -39,8 +39,9 @@ const UserReducer = (state = initialState, action) => {
       };
 
     case ADD_FOLLOW:
+    console.log(action.subscribed);
       if (state.data.length > 0){
-        state.data[0].subscribed = [action.subscribed, ...state.data[0].subscribed];
+        state.data[0].subscribed = [action.subscribed[0], ...state.data[0].subscribed];
 
       }
       return {
